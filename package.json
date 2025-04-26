@@ -1,0 +1,35 @@
+{
+  "name": "class_project",
+  "version": "1.0.0",
+  "description": "Class group project centered around exploring the feasibility of funding and developing a microgrid at the University of Houston.",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Build script is running successfully!\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stragitech/uh_microgrid_feasibility.git"
+  },
+  "keywords": [
+    "microgrid",
+    "university",
+    "houston",
+    "energy",
+    "feasibility"
+  ],
+  "author": "Project Team",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/stragitech/uh_microgrid_feasibility/issues"
+  },
+  "homepage": "https://github.com/stragitech/uh_microgrid_feasibility#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
