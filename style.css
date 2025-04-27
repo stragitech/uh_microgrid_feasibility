@@ -10,13 +10,19 @@ html {
     scroll-behavior: smooth;
 }
 
+/* General Body Styles */
 body {
-    font-family: sans-serif; /* Placeholder - Use Crimson for body text later */
+    font-family: 'Arial', sans-serif; /* Example font */
     line-height: 1.6;
-    background-color: #FFF9D9; /* UH Cream */
-    color: #333; /* Dark grey for readability, adjust as needed */
-    overflow-x: hidden; /* Prevent horizontal scrollbars caused by animations */
-    /* Add when mobile menu is open to prevent background scroll */
+    margin: 0;
+    padding: 0; /* Ensure no default body padding interferes */
+    color: #333;
+    background-color: #f4f4f4; /* Light grey background */
+    /* Ensure problematic styles remain removed */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* overflow-x: hidden; */
 }
 
 body.mobile-menu-open {
@@ -108,6 +114,7 @@ nav#main-nav ul li a:focus {
 
 main {
     padding-top: 60px; /* Adjust if header height changes */
+    overflow: visible; /* Ensure main doesn't clip content */
 }
 
 section {
@@ -155,11 +162,13 @@ section h2 {
 /* Style the map container for aspect ratio */
 .map-container {
     position: relative;
-    width: 90%;
-    margin: 1rem auto;
+    width: 100%;
+    margin: 0 auto; /* Center the map container */
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
+    height: 0; /* Height is controlled by padding-bottom */
+    overflow: hidden; /* Keep this hidden for the iframe aspect ratio trick */
+    border: 1px solid #ccc;
+    background-color: #f8f9fa; /* Placeholder background */
 }
 
 /* Style the iframe to fill the container */
@@ -169,7 +178,7 @@ section h2 {
    left: 0;
    width: 100%;
    height: 100%;
-   border: 1px solid #ccc; /* Optional border */
+   border: 0;
 }
 
 footer {
@@ -278,4 +287,398 @@ footer {
     .map-container {
         width: 95%; /* Example: Make slightly wider on mobile */
     }
-} 
+}
+
+/* --- Removed Generic Gallery Section Styles --- */
+/* #gallery { ... } */
+/* .collage-container { ... } */
+/* .collage-container img { ... } */
+/* .collage-container img:hover { ... } */
+
+/* --- Case Study Section Styles --- */
+#case-studies {
+    background-color: #f8f9fa; /* Slightly different background */
+    padding: 3rem 1rem; /* More padding */
+}
+
+#case-studies h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem; /* Larger heading */
+    color: #C8102E; /* UH Red */
+}
+
+#case-studies .section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2.5rem auto; /* Center and add bottom margin */
+    color: #555;
+}
+
+.case-studies-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 1.5rem; /* Space between cards */
+    max-width: 1200px; /* Limit overall width */
+    margin: 0 auto; /* Center the container */
+}
+
+.case-study-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex; /* Use flexbox for internal layout */
+    flex-direction: column; /* Stack content vertically */
+}
+
+.case-study-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.case-study-card h3 {
+    font-size: 1.4rem;
+    color: #C8102E; /* UH Red */
+    margin-bottom: 0.75rem;
+}
+
+.case-study-card h4 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee; /* Subtle separator */
+    padding-bottom: 0.25rem;
+}
+
+.case-study-card .overview {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Allow overview to push links down */
+}
+
+.case-study-card ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    color: #444;
+}
+
+.case-study-card ul li {
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+
+.case-study-card p { /* Style for 'What Texas Can Learn' paragraphs */
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.case-study-card .case-study-link {
+    display: inline-block; /* Or block if you want them full width */
+    margin-top: 0.5rem; /* Space above links */
+    margin-right: 0.5rem; /* Space between links if inline */
+    color: #007bff; /* Standard link blue */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.case-study-card .case-study-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+
+/* --- UH Microgrid Section Styles --- */
+#uh-microgrid {
+    padding: 3rem 1rem; /* Keep top padding */
+    background-color: #fff;
+    margin-top: 0; /* Explicitly remove top margin */
+    /* Add high visibility style for testing */
+    /* border: 5px solid blue !important; */ /* Changed color for differentiation */
+}
+
+/* ... styles for #components, #benefits etc. should follow ... */
+
+/* --- Funding & Policy Section Styles --- */
+#funding-policy {
+    background-color: #fff; /* White background */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+#funding-policy h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #c8102e; /* UH Red */
+}
+#funding-policy h3:first-of-type {
+    margin-top: 0;
+}
+
+
+/* --- Resources Section Styles --- */
+#resources {
+    background-color: #f8f8f8; /* Light background */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+#resources ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+#resources li {
+    margin-bottom: 0.5rem;
+}
+
+
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+    /* ... existing mobile styles ... */
+
+    /* Adjust collage image height on mobile if needed */
+    .collage-container img {
+        height: 180px;
+    }
+
+    .uh-collage-container img {
+        height: 150px; /* Smaller height for UH collage on mobile */
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 0.5rem; /* Smaller padding on mobile */
+        font-size: 0.9em; /* Smaller font size for table */
+    }
+
+    /* Stack table on small screens if needed (more complex CSS) */
+    /* Example: (Requires restructuring HTML or more CSS) */
+    /*
+    .comparison-table thead { display: none; }
+    .comparison-table tr { display: block; margin-bottom: 1rem; border: 1px solid #ddd; }
+    .comparison-table td { display: block; text-align: right; border-bottom: 1px dotted #ccc; }
+    .comparison-table td::before { content: attr(data-label); float: left; font-weight: bold; text-transform: uppercase; }
+    */
+
+    /* ... existing mobile map container styles ... */
+}
+
+/* --- Scrolling ASCII Animation --- */
+/* Remove old styles for #scroll- बिजली */
+/*
+#scroll- बिजली { ... }
+@keyframes pulse { ... }
+*/
+
+/* Style for the fixed ASCII container */
+/* --- CORRECTED Lightning Bolt Styles START --- */
+#bolt-container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0; /* Stretch container */
+    width: 150px; /* Fixed width for the pre element */
+    /* display: none; /* Corrected comment */
+    display: flex; /* Start as flex, but hidden by opacity/visibility initially */
+    flex-direction: column; /* Align pre vertically */
+    justify-content: center; /* Center pre vertically */
+    align-items: center; /* Center pre horizontally */
+    overflow: hidden; /* Hide overflow from pre */
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.1); /* Optional: slight background for visibility */
+    opacity: 0; /* Start fully transparent */
+    visibility: hidden; /* Start hidden */
+    pointer-events: none; /* Prevent interaction when hidden */
+    /* Remove 'display' from transition */
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+}
+
+#bolt-pre {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px; /* Adjust for desired bolt size */
+    line-height: 1;
+    color: #ffd700; /* Gold color for lightning */
+    text-shadow: 0 0 5px #ffa500, 0 0 10px #ff8c00; /* Glow effect */
+    white-space: pre; /* Preserve whitespace */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    text-align: center;
+}
+
+/* Class to control hiding/showing transition */
+#bolt-container:not(.bolt-hidden) { /* Styles when bolt SHOULD be visible */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Allow interaction if needed */
+    transition: opacity 0.3s ease-out, visibility 0s; /* Fast visibility change */
+}
+
+#bolt-container.bolt-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out, visibility 0s linear 0.3s; /* Hide visibility after opacity fades */
+}
+/* --- CORRECTED Lightning Bolt Styles END --- */
+
+
+/* ASCII bolt text style (Old - can be removed if not used elsewhere) */
+/*
+#ascii-bolt {
+     transition: opacity 0.1s ease-in-out, text-shadow 0.1s ease-in-out;
+}
+#ascii-bolt.flicker {
+     opacity: 0.7;
+     text-shadow: 0 0 6px rgba(55, 65, 81, 0.7);
+}
+*/
+
+/* Responsive adjustments for body padding */
+@media (min-width: 768px) {
+    body {
+        transition: padding-right 0.3s ease; /* Smooth transition for padding */
+    }
+}
+
+/* --- Diagram Styles --- */
+.diagram-container {
+    margin: 2rem auto; /* Center the figure with vertical margin */
+    max-width: 600px; /* Limit max width of the diagram container */
+    text-align: center; /* Center the image and caption */
+}
+
+/* Styles for ASCII diagrams */
+.ascii-diagram {
+    font-family: 'Courier New', Courier, monospace; /* Monospace font */
+    font-size: 0.9rem; /* Adjust size as needed */
+    line-height: 1.2; /* Adjust line spacing */
+    text-align: left; /* Align text left within the pre block */
+    display: inline-block; /* Allow centering via text-align on parent */
+    padding: 1rem; /* Add some padding */
+    background-color: #f0f0f0; /* Light grey background */
+    border: 1px solid #ccc; /* Subtle border */
+    border-radius: 4px; /* Slightly rounded corners */
+    overflow-x: auto; /* Add scroll if content is too wide */
+    white-space: pre; /* Preserve whitespace and line breaks */
+}
+
+.diagram-container figcaption {
+    font-size: 0.9em;
+    color: #555;
+    font-style: italic;
+    margin-top: 0.5rem; /* Add space above caption */
+}
+
+
+/* --- Component List Styles --- */
+/* Removed empty #components ul rule */
+
+/* --- Map Section Styles --- */
+#global-map, #uh-map {
+    padding: 2rem 1rem;
+    background-color: #e9ecef;
+    overflow: visible;
+    margin-bottom: 0; /* Explicitly remove bottom margin */
+}
+
+#global-map h2, #uh-map h2 {
+    font-size: 2rem; /* Larger heading */
+    color: #C8102E; /* UH Red */
+    margin-bottom: 1rem;
+}
+
+/* Copied map container rules just in case */
+.map-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto; /* Center the map container */
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0; /* Height is controlled by padding-bottom */
+    overflow: hidden; /* Keep this hidden for the iframe aspect ratio trick */
+    border: 1px solid #ccc;
+    background-color: #f8f9fa; /* Placeholder background */
+}
+
+.map-container iframe {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   border: 0;
+}
+
+/* Ensure main content area allows overflow */
+main {
+    padding-top: 60px; /* Adjust if header height changes */
+    overflow: visible; /* Ensure main doesn't clip content */
+}
+
+/* --- Global Map Section Styles --- */
+/* Removed empty #global-map rule */
+
+/* --- UH Focus Section Styles --- */
+#uh-focus {
+    background-color: #fff; /* White background */
+    padding: 3rem 1rem;
+}
+
+#uh-focus h3 {
+    color: #C8102E; /* UH Red */
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+#uh-focus h3:first-of-type {
+    margin-top: 0;
+}
+
+#uh-focus h4 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+#uh-focus ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    color: #444;
+}
+
+#uh-focus ul li {
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+
+/* --- UH Collage Container Styles --- */
+.uh-collage-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 0.5rem; /* Small gap between images */
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.uh-collage-container img {
+    width: 100%;
+    height: 180px; /* Fixed height for consistency */
+    object-fit: cover; /* Crop images nicely */
+    border-radius: 4px; /* Slightly rounded corners */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.uh-collage-container img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
