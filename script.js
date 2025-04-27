@@ -36,23 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Header Hide/Show on Scroll ---
     const header = document.querySelector('header');
-    let lastScrollTop = 0;
-    const scrollThreshold = 50; // Pixels to scroll before hiding header
 
     if (header) {
         window.addEventListener('scroll', () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
-                // Scrolling Down
+            // New Header logic: Hide if scrolled down at all, show only at top
+            if (scrollTop > 0) {
                 header.classList.add('header-hidden');
             } else {
-                // Scrolling Up or near top
                 header.classList.remove('header-hidden');
             }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+
         }, { passive: true }); // Use passive listener for scroll performance
     } 
+
 
     // --- Section Fade-In Animation ---
     const sections = document.querySelectorAll('section');
@@ -89,13 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            // Header logic
-            if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+            // New Header logic: Hide if scrolled down at all, show only at top
+            if (scrollTop > 0) {
                 header.classList.add('header-hidden');
             } else {
                 header.classList.remove('header-hidden');
             }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 
         }, { passive: true }); // Use passive listener for scroll performance
     } 
@@ -110,9 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Checks --- 
     // Initial check for header visibility (in case page loads scrolled down)
-    if (header && window.scrollY > scrollThreshold) {
+    if (header && window.scrollY > 0) { // Check if scrolled at all on load
         header.classList.add('header-hidden');
-        lastScrollTop = window.scrollY;
     }
 
     console.log("Microgrid page script loaded. Header, menu, and section animations active.");
