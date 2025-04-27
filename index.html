@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>UH Microgrid Feasibility Project</title>
+    <title>UH Microgrid Initiative</title>
+    <link rel="stylesheet" href="style.css">
     <style>
       /* Apply Inter font globally */
       body {
@@ -16,31 +17,91 @@
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 flex items-center justify-center min-h-screen">
-    <div class="container mx-auto p-6 bg-white rounded-lg shadow-md text-center max-w-2xl">
-        <header class="mb-6">
-            <h1 class="text-3xl font-bold text-blue-600 mb-2">UH Microgrid Feasibility Study</h1>
-            <p class="text-lg text-gray-600">Exploring sustainable energy solutions for the University of Houston.</p>
-        </header>
+    <div class="overlay" id="overlay"></div>
+    <header>
+        <div class="header-content">
+            <div class="logo-placeholder">UH Microgrid</div> <!-- Optional: Placeholder for logo -->
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Microgrids</a></li>
+                    <li><a href="#global-map">Global Map</a></li>
+                    <li><a href="#uh-map">UH Campus Map</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <main class="mb-6">
-            <p class="mb-4">
-                Welcome to the project page for the UH Microgrid Feasibility Study. This project investigates the potential for implementing a microgrid system on campus.
-            </p>
-            <img
-              src="https://placehold.co/600x300/a0aec0/ffffff?text=Microgrid+Concept"
-              alt="Placeholder image representing a microgrid concept"
-              class="rounded-lg shadow-sm mx-auto mb-4 w-full max-w-md h-auto"
-              onerror="this.onerror=null; this.src='https://placehold.co/600x300/cccccc/ffffff?text=Image+Not+Available'"
-            >
+    <main>
+        <section id="home">
+            <h1>Welcome to the UH Microgrid Initiative</h1>
+            <p>Exploring sustainable energy solutions for our campus.</p>
+            <!-- Placeholder content -->
+        </section>
+
+        <section id="about">
+            <h1>About Microgrids</h1>
+            <h2>What is a Microgrid?</h2>
             <p>
-                Stay tuned for updates and findings!
+                A microgrid is a localized group of electricity sources and loads that normally operates connected to and synchronous with the traditional centralized electrical grid (macrogrid). However, it has a crucial capability: it can disconnect from the macrogrid and operate autonomously in "island mode." This ensures that critical facilities can maintain power even when the main grid experiences outages.
             </p>
-        </main>
+            <h2>Why are Microgrids Important?</h2>
+            <p>
+                Microgrids offer significant advantages, particularly in enhancing energy resilience and reliability. By being able to operate independently, they protect critical infrastructure and communities from widespread power disruptions caused by severe weather, equipment failures, or other grid disturbances.
+            </p>
+            <p>
+                Furthermore, microgrids facilitate the integration of distributed energy resources (DERs), such as solar panels, wind turbines, and battery storage systems. This promotes the use of renewable energy, reduces reliance on fossil fuels, and can potentially lower energy costs.
+            </p>
+            <h2>How do they Work?</h2>
+            <p>
+                A microgrid typically includes local power generation sources (like generators, solar PV), energy storage (batteries), and loads (buildings, equipment). A sophisticated control system manages these components, deciding when to connect or disconnect from the main grid, how to balance generation and load, and how to optimize energy use for resilience, cost savings, or environmental benefits.
+            </p>
+            <!-- Placeholder for an image or diagram -->
+            <!-- <img src="images/microgrid_diagram.png" alt="Diagram of a typical microgrid setup"> -->
+        </section>
 
-        <footer class="border-t pt-4 text-sm text-gray-500">
-            <p>&copy; 2025 UH Microgrid Project Team</p>
-            <a href="https://github.com/stragitech/uh_microgrid_feasibility" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Project Repository</a>
-        </footer>
-    </div>
+        <section id="global-map">
+            <h2>Global Microgrid Examples</h2>
+            <div class="map-container"> <!-- Container for aspect ratio -->
+                <iframe
+                    src="https://www.google.com/maps/d/embed?mid=1epJU454zp0jOsimtUOIdxKscbd-UkL4&ehbc=2E312F"
+                    width="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </section>
+
+        <section id="uh-map">
+            <h2>UH Campus Microgrid Overview</h2>
+            <div class="map-container"> <!-- Use the same container class -->
+                <iframe
+                    src="https://www.google.com/maps/d/embed?mid=1n5My0H802elRh-pktsb7AW4JVAxAVrA&hl=en&ehbc=2E312F"
+                    width="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </section>
+
+        <section id="resources">
+            <h2>Resources & Information</h2>
+            <p>Funding, policy, technical details, and next steps.</p>
+            <!-- Content will be added in Task 2.2 -->
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <!-- TODO: Add Google Maps API script tag later when needed -->
 </body>
 </html>

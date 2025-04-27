@@ -1,0 +1,281 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: sans-serif; /* Placeholder - Use Crimson for body text later */
+    line-height: 1.6;
+    background-color: #FFF9D9; /* UH Cream */
+    color: #333; /* Dark grey for readability, adjust as needed */
+    overflow-x: hidden; /* Prevent horizontal scrollbars caused by animations */
+    /* Add when mobile menu is open to prevent background scroll */
+}
+
+body.mobile-menu-open {
+    overflow: hidden;
+}
+
+header {
+    background-color: #C8102E; /* UH Red */
+    color: #FFFFFF; /* White */
+    padding: 0.5rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    /* Update transition for fade effect */
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Class added by JS when scrolling down */
+header.header-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Prevent interaction with hidden header */
+    /* Remove transform: translateY(-100%); */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between; /* Space out logo/nav/button */
+    align-items: center;
+    max-width: 1200px; /* Limit content width */
+    margin: 0 auto; /* Center content */
+    padding: 0 1rem; /* Padding inside container */
+}
+
+.logo-placeholder {
+    font-weight: bold; /* Placeholder style */
+    font-size: 1.2rem;
+}
+
+/* Hide menu toggle button on larger screens */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #FFFFFF; /* White bars */
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Styles for the main navigation */
+nav#main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0; /* Reset margin */
+    padding: 0; /* Reset padding */
+}
+
+nav#main-nav ul li {
+    margin: 0 0.8rem; /* Slightly reduced margin */
+}
+
+nav#main-nav ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold; /* Placeholder - Use Milo */
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+    display: block; /* Ensure padding creates clickable area */
+}
+
+nav#main-nav ul li a:hover,
+nav#main-nav ul li a:focus {
+    color: #F6BE00; /* UH Gold */
+}
+
+main {
+    padding-top: 60px; /* Adjust if header height changes */
+}
+
+section {
+    padding: 3rem 1rem; /* Default padding */
+    min-height: auto; /* Remove default min-height */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section h1 {
+    font-size: 2.2rem; /* Placeholder */
+    margin-bottom: 1rem;
+    color: #C8102E; /* UH Red */
+}
+
+section h2 {
+    font-size: 1.8rem; /* Placeholder */
+    margin-bottom: 1.5rem;
+    color: #333; /* Darker text */
+}
+
+/* Remove old map placeholder styles */
+/*
+#map-global-placeholder,
+#map-uh-placeholder {
+    width: 80%;
+    height: 500px;
+    background-color: #e0e0e0;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    color: #666;
+    border: 1px solid #ccc;
+}
+*/
+
+/* Style the map container for aspect ratio */
+.map-container {
+    position: relative;
+    width: 90%;
+    margin: 1rem auto;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+/* Style the iframe to fill the container */
+.map-container iframe {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   border: 1px solid #ccc; /* Optional border */
+}
+
+footer {
+    background-color: #333; /* Dark background for footer */
+    color: #FFF9D9; /* UH Cream text */
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+/* Style for the overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+    z-index: 1001; /* Below menu, above content */
+}
+
+.overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Basic Responsive Adjustment */
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 1rem; /* Ensure padding on mobile */
+    }
+
+    .menu-toggle {
+        display: block;
+        z-index: 1003; /* Ensure button is above overlay and menu */
+        position: relative;
+    }
+
+    /* --- Mobile Navigation - Slide-in --- */
+    nav#main-nav {
+        position: fixed; /* Fixed position for viewport-relative sliding */
+        top: 0;
+        right: 0; /* Start from the right edge */
+        width: 75%; /* Adjust width as needed */
+        max-width: 300px; /* Max width */
+        height: 100%; /* Full height */
+        background-color: #C8102E; /* UH Red background */
+        transform: translateX(100%); /* Start off-screen */
+        opacity: 0.95; /* Slightly transparent if desired */
+        transition: transform 0.4s ease-out, opacity 0.4s ease-out; /* Smooth transition */
+        box-shadow: -2px 0 5px rgba(0,0,0,0.2); /* Shadow on the left */
+        z-index: 1002; /* Above overlay */
+        overflow-y: auto; /* Allow scrolling if content overflows */
+        padding-top: 60px; /* Space for header */
+    }
+
+    nav#main-nav.is-open {
+        transform: translateX(0); /* Slide in */
+        opacity: 1;
+    }
+
+    nav#main-nav ul {
+        flex-direction: column;
+        padding: 1rem 0;
+        align-items: flex-start; /* Align items to the start (left) */
+    }
+
+    nav#main-nav ul li {
+        margin: 0.5rem 0;
+        width: 100%;
+        text-align: left; /* Align text left */
+    }
+
+    nav#main-nav ul li a {
+        padding: 0.8rem 1.5rem; /* Adjust padding */
+        width: 100%;
+        display: block; /* Ensure full width clickable */
+    }
+    /* --- End Mobile Navigation --- */
+
+    main {
+        padding-top: 55px; /* Adjust for potentially slightly shorter header */
+    }
+
+    section {
+        padding: 2rem 1rem; /* Slightly reduced padding on mobile */
+    }
+
+    section h1 {
+        font-size: 1.8rem; /* Reduced heading size */
+    }
+
+    section h2 {
+        font-size: 1.6rem; /* Reduced heading size */
+    }
+
+    /* Remove fixed height override for global map iframe */
+    /* #global-map .map-container iframe { */
+         /* height: 400px; /* No longer needed */
+    /* } */
+
+    /* Optional: Adjust width on mobile if 90% is too wide */
+    .map-container {
+        width: 95%; /* Example: Make slightly wider on mobile */
+    }
+} 

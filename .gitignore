@@ -71,3 +71,4 @@ node_modules/
 # Optional OS generated files
 .DS_Store
 Thumbs.db
+firebase.js
