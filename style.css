@@ -472,81 +472,7 @@ footer {
 }
 
 /* --- Scrolling ASCII Animation --- */
-/* Remove old styles for #scroll- बिजली */
-/*
-#scroll- बिजली { ... }
-@keyframes pulse { ... }
-*/
-
-/* Style for the fixed ASCII container */
-/* --- CORRECTED Lightning Bolt Styles START --- */
-#bolt-container {
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0; /* Stretch container */
-    width: 150px; /* Fixed width for the pre element */
-    /* display: none; /* Corrected comment */
-    display: flex; /* Start as flex, but hidden by opacity/visibility initially */
-    flex-direction: column; /* Align pre vertically */
-    justify-content: center; /* Center pre vertically */
-    align-items: center; /* Center pre horizontally */
-    overflow: hidden; /* Hide overflow from pre */
-    z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.1); /* Optional: slight background for visibility */
-    opacity: 0; /* Start fully transparent */
-    visibility: hidden; /* Start hidden */
-    pointer-events: none; /* Prevent interaction when hidden */
-    /* Remove 'display' from transition */
-    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
-}
-
-#bolt-pre {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 10px; /* Adjust for desired bolt size */
-    line-height: 1;
-    color: #ffd700; /* Gold color for lightning */
-    text-shadow: 0 0 5px #ffa500, 0 0 10px #ff8c00; /* Glow effect */
-    white-space: pre; /* Preserve whitespace */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    text-align: center;
-}
-
-/* Class to control hiding/showing transition */
-#bolt-container:not(.bolt-hidden) { /* Styles when bolt SHOULD be visible */
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto; /* Allow interaction if needed */
-    transition: opacity 0.3s ease-out, visibility 0s; /* Fast visibility change */
-}
-
-#bolt-container.bolt-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease-out, visibility 0s linear 0.3s; /* Hide visibility after opacity fades */
-}
-/* --- CORRECTED Lightning Bolt Styles END --- */
-
-
-/* ASCII bolt text style (Old - can be removed if not used elsewhere) */
-/*
-#ascii-bolt {
-     transition: opacity 0.1s ease-in-out, text-shadow 0.1s ease-in-out;
-}
-#ascii-bolt.flicker {
-     opacity: 0.7;
-     text-shadow: 0 0 6px rgba(55, 65, 81, 0.7);
-}
-*/
-
-/* Responsive adjustments for body padding */
-@media (min-width: 768px) {
-    body {
-        transition: padding-right 0.3s ease; /* Smooth transition for padding */
-    }
-}
+/* Removed all styles for #bolt-container, #bolt-pre, .bolt-hidden */
 
 /* --- Diagram Styles --- */
 .diagram-container {
@@ -681,4 +607,18 @@ main {
 .uh-collage-container img:hover {
     transform: scale(1.03);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* --- Add Desktop Padding --- */
+@media (min-width: 769px) { /* Apply padding on screens wider than 768px */
+    section {
+        padding-left: 5vw; /* Dynamic padding based on viewport width */
+        padding-right: 5vw;
+    }
+
+    /* Optional: Limit max padding if needed */
+    /* section {
+        padding-left: max(20px, 5vw);
+        padding-right: max(20px, 5vw);
+    } */
 }
