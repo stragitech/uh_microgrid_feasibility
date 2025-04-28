@@ -1,8 +1,12 @@
+<!-- Add Poster Image -->
+![Project Poster](images/poster.png)
+
 # uh_microgrid_feasibility
 Class group project centered around exploring the feasibility of funding and developing a microgrid at the University of Houston.
 
-<!-- Add Poster Image -->
-![Project Poster](images/poster.png)
+## Purpose
+We set out to learn about microgrids around the world, see what can be done at our own University of Houston, and share some of our process so more people can recreate this and tell their own story.
+We used Firebase for hosting, github for version control and visibility, and a flyer for a call to action. Cursor was used to build out the website mostly with gemini 2.5 pro and 2.5 mini. We also created a couple custom google maps. One of world microgrids and some of their deatils, along with a proposed campus microgrid idea. Go build something and learn more about microgrids!
 
 ## Prerequisites
 
