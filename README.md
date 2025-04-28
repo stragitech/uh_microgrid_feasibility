@@ -1,6 +1,9 @@
 # uh_microgrid_feasibility
 Class group project centered around exploring the feasibility of funding and developing a microgrid at the University of Houston.
 
+<!-- Add Poster Image -->
+![Project Poster](images/poster.png)
+
 ## Prerequisites
 
 *   [Node.js](https://nodejs.org/) and npm (Node Package Manager)
