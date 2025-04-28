@@ -40,7 +40,7 @@
         <section id="home">
             <h1>Welcome to the UH Microgrid Educational Platform</h1>
             <p>
-                Technology today is moving faster than ever, changing the way we live, work, and power our communities. Instead of relying solely on large, centralized power grids, there's a growing focus on smaller, smarter, local energy solutions. This platform explores one of the most promising solutions: **microgrids**.
+                Technology today is moving faster than ever, changing the way we live, work, and power our communities. Instead of relying solely on large, centralized power grids, there's a growing focus on smaller, smarter, local energy solutions. This website explores Microgrids as a promising solution.
             </p>
             <p>
                 Here, you'll find comprehensive information about microgrid technology – what it is, why it's useful, its key components, and how it's being implemented in the real world. We'll look at examples from leading universities and other institutions, dive into the specifics of the University of Houston's energy system and microgrid potential, and discuss the funding and policies shaping the future of resilient energy.
@@ -77,51 +77,17 @@
             <p>
                 <strong>Grid-Connected Mode:</strong> When connected to the main grid, the microgrid can import power when local generation is insufficient or export excess power. The controller optimizes this interaction based on energy prices, grid conditions, or pre-defined goals (like minimizing cost or carbon footprint).
             </p>
-            <div class="diagram-container">
-                <pre class="ascii-diagram">
-      Utility Grid
-          |
-          | Connection
- +-----[Closed]-----+  &lt;-- Point of Common Coupling (PCC)
- |        |         |
- |&lt;------ + -------&gt;|  &lt;-- Bi-directional Power Flow
- |        |         |
- +----[Controller]--+
- |        |         |
- |  +-----------+  |
- |  | Microgrid |  |
- |  | Gen | Bat |  |
- |  |  |  |  |  |  |
- |  +--+--+--+--+  |
- |     |     |     |
- +----[Loads]------+
-                </pre>
-                <figcaption>ASCII Diagram: Microgrid in Grid-Connected Mode</figcaption>
+            <!-- Replaced ASCII diagram with image -->
+            <div class="image-container" style="text-align: center; margin: 1.5rem 0;">
+                <img src="images/Microgrids_in_Grid_Connected_Mode.png" alt="Diagram showing a microgrid connected to the utility grid with bi-directional power flow" style="max-width: 80%; height: auto; border: 1px solid #ccc;">
             </div>
 
             <p>
                 <strong>Island Mode:</strong> During a grid outage or other triggering event, the controller automatically detects the problem and opens a switch (at the Point of Common Coupling - PCC), safely disconnecting the microgrid from the macrogrid. In island mode, the controller must maintain stable voltage and frequency within the microgrid, manage energy storage (charging/discharging batteries), and potentially shed non-essential loads to ensure continuous power for critical functions. When grid power is restored and stable, the controller manages the process of safely reconnecting and synchronizing with the macrogrid. Modern systems often use distributed control architectures for increased flexibility and resilience compared to older centralized controllers.
             </p>
-            <div class="diagram-container">
-                <pre class="ascii-diagram">
-      Utility Grid
-          |
-          | Connection (Broken)
- +-----[ Open ]-----+  &lt;-- Point of Common Coupling (PCC)
- |        /         |
- |       /          |  &lt;-- Disconnected from Grid
- |      /           |
- +----[Controller]--+
- |        |         |
- |  +-----------+  |
- |  | Microgrid |  | &lt;-- Internal Power Flow Only
- |  | Gen | Bat |  |
- |  |  |  |  |  |  |
- |  +--+--+--+--+  |
- |     |     |     |
- +----[Loads]------+
-                </pre>
-                <figcaption>ASCII Diagram: Microgrid in Island Mode</figcaption>
+            <!-- Replaced ASCII diagram with image -->
+            <div class="image-container" style="text-align: center; margin: 1.5rem 0;">
+                <img src="images/Microgrids_in_Grid_Island_Mode.png" alt="Diagram showing a microgrid disconnected from the utility grid and operating in island mode" style="max-width: 80%; height: auto; border: 1px solid #ccc;">
             </div>
 
             <h2 id="components">Key Components</h2>
@@ -215,7 +181,7 @@
             </div> <!-- /.case-studies-container -->
         </section>
 
-        <section id="global-map">
+        <section id="global-map" style="margin: auto 4rem;">
             <h2>Global Microgrid Examples</h2>
             <p>Microgrids are being deployed worldwide in diverse applications. This map showcases examples ranging from remote community power systems to industrial facilities, military bases, and university campuses, illustrating the global trend towards localized, resilient energy solutions.</p>
             <div class="map-container">
@@ -230,7 +196,7 @@
             </div>
         </section>
 
-        <section id="uh-map">
+        <section id="uh-map" style="margin: auto 4rem;">
             <h2>UH Campus Microgrid Overview</h2>
             <p>This map provides a geographical overview of the University of Houston campus, highlighting key buildings and infrastructure relevant to its energy system. Explore the potential locations for components of a future campus microgrid.</p>
             <div class="map-container">
