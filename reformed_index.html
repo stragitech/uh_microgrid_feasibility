@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>UH Microgrid Feasibility Study</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to existing CSS, will need updates -->
+    <!-- Add Favicon -->
+    <link rel="icon" type="image/png" href="images/website_favicon.png">
+    <!-- Potential: Add link to a modern CSS framework or reset/normalize CSS -->
+</head>
+<body>
+    <!-- Overlay for mobile menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <header class="site-header">
+        <div class="header-content-wrapper">
+            <div class="site-logo">UH Microgrid Study</div> <!-- More semantic class -->
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#global-map">Global Map</a></li>
+                    <li><a href="#uh-map">UH Map</a></li>
+                    <li><a href="#uh-focus">UH Focus</a></li>
+                    <li><a href="#funding-policy">Funding/Policy</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <section id="home" class="section-home">
+            <div class="section-content-wrapper">
+                <h1>Welcome to the UH Microgrid Educational Platform</h1>
+                <p>
+                    Technology today is moving faster than ever, changing the way we live, work, and power our communities. Instead of relying solely on large, centralized power grids, there's a growing focus on smaller, smarter, local energy solutions. This website explores Microgrids as a promising solution.
+                </p>
+                <p>
+                    Here, you'll find comprehensive information about microgrid technology – what it is, why it's useful, its key components, and how it's being implemented in the real world. We'll look at examples from leading universities and other institutions, dive into the specifics of the University of Houston's energy system and microgrid potential, and discuss the funding and policies shaping the future of resilient energy.
+                </p>
+                <!-- Potential: Add a prominent Call to Action button -->
+            </div>
+        </section>
+
+        <section id="about" class="section-about">
+            <div class="section-content-wrapper">
+                <h1>About Microgrids</h1>
+
+                <article class="about-topic"> <!-- Use article for distinct topics -->
+                    <h2 id="what-is">What is a Microgrid?</h2>
+                    <p>
+                        A microgrid is a localized group of electricity sources and loads that normally operates connected to the traditional centralized electrical grid (macrogrid) but can also disconnect and operate autonomously. Think of it as a small-scale version of the main grid that can function independently when needed.
+                    </p>
+                    <p>
+                        The defining feature is its ability to intentionally "island" itself from the macrogrid during outages or disturbances, using its own local energy resources to power its designated loads. This capability is managed by a sophisticated microgrid controller.
+                    </p>
+                    <figure class="image-figure"> <!-- Use figure for images with captions -->
+                        <img src="images/microgrid-system.png" alt="Diagram illustrating the components of a microgrid including generation, storage, loads, and grid connection">
+                        <figcaption>Diagram illustrating the components of a microgrid including generation, storage, loads, and grid connection</figcaption>
+                    </figure>
+                </article>
+
+                <article class="about-topic">
+                    <h2 id="why-important">Why are Microgrids Important?</h2>
+                    <p>
+                        Microgrids offer significant advantages, primarily focused on enhancing **energy resilience** and **reliability**. By operating independently during grid outages caused by weather, equipment failure, or other disruptions, they ensure continuous power for critical facilities (like hospitals, data centers, emergency services) and communities. Examples like UT Austin maintaining power during Winter Storm Uri highlight this crucial benefit.
+                    </p>
+                    <p>
+                        They also facilitate the integration of **Distributed Energy Resources (DERs)**, especially renewables like solar and wind, as well as combined heat and power (CHP) systems and battery storage. This promotes cleaner energy, reduces greenhouse gas emissions, and can potentially lower energy costs through optimized local generation and demand management. Furthermore, microgrids can improve local power quality and provide beneficial services back to the main grid when connected.
+                    </p>
+                </article>
+
+                <article class="about-topic">
+                    <h2 id="how-work">How do they Work?</h2>
+                    <p>
+                        A microgrid's operation is orchestrated by its **control system**. This "brain" manages the flow of energy within the microgrid, balancing generation sources (solar, CHP, batteries, generators) with the energy demands of the connected buildings and loads.
+                    </p>
+                    <p>
+                        <strong>Grid-Connected Mode:</strong> When connected to the main grid, the microgrid can import power when local generation is insufficient or export excess power. The controller optimizes this interaction based on energy prices, grid conditions, or pre-defined goals (like minimizing cost or carbon footprint).
+                    </p>
+                    <figure class="image-figure">
+                        <img src="images/Microgrids_in_Grid_Connected_Mode.png" alt="Diagram showing a microgrid connected to the utility grid with bi-directional power flow">
+                        <figcaption>Diagram showing a microgrid connected to the utility grid with bi-directional power flow</figcaption>
+                    </figure>
+
+                    <p>
+                        <strong>Island Mode:</strong> During a grid outage or other triggering event, the controller automatically detects the problem and opens a switch (at the Point of Common Coupling - PCC), safely disconnecting the microgrid from the macrogrid. In island mode, the controller must maintain stable voltage and frequency within the microgrid, manage energy storage (charging/discharging batteries), and potentially shed non-essential loads to ensure continuous power for critical functions. When grid power is restored and stable, the controller manages the process of safely reconnecting and synchronizing with the macrogrid. Modern systems often use distributed control architectures for increased flexibility and resilience compared to older centralized controllers.
+                    </p>
+                    <figure class="image-figure">
+                        <img src="images/Microgrids_in_Grid_Island_Mode.png" alt="Diagram showing a microgrid disconnected from the utility grid and operating in island mode">
+                        <figcaption>Diagram showing a microgrid disconnected from the utility grid and operating in island mode</figcaption>
+                    </figure>
+                </article>
+
+                <article class="about-topic">
+                    <h2 id="components">Key Components</h2>
+                    <p>Typical microgrids integrate several key technologies:</p>
+                    <ul>
+                        <li><strong>Local Generation:</strong> Sources like solar panels (PV), wind turbines, combined heat and power (CHP) plants, natural gas generators, or fuel cells.</li>
+                        <li><strong>Energy Storage:</strong> Often lithium-ion batteries, used to store excess energy, smooth out fluctuations from renewables, and provide power during islanding.</li>
+                        <li><strong>Loads:</strong> The buildings, equipment, and devices that consume electricity within the microgrid's boundary. These can sometimes be categorized as critical (must stay powered) and non-critical (can be shed if necessary).</li>
+                        <li><strong>Point of Common Coupling (PCC):</strong> The switchgear and controls that form the interface between the microgrid and the main utility grid, allowing connection and disconnection.</li>
+                        <li><strong>Microgrid Controller:</strong> The central intelligence that monitors conditions, manages resources, controls the PCC, and optimizes operation in both grid-connected and island modes.</li>
+                    </ul>
+                </article>
+
+                <article class="about-topic">
+                    <h2 id="challenges">Challenges & Considerations</h2>
+                    <p>
+                        While beneficial, microgrids also present challenges:
+                    </p>
+                    <ul>
+                        <li><strong>Cost:</strong> Initial capital investment for generation, storage, and control systems can be substantial, often requiring significant funding or financing arrangements.</li>
+                        <li><strong>Complexity:</strong> Designing, integrating, and operating the various components requires specialized expertise. Control systems need careful configuration and maintenance.</li>
+                        <li><strong>Regulatory Hurdles:</strong> Interconnecting with the utility grid involves navigating regulations, tariffs, and agreements, which can vary significantly by location. Islanding capabilities may require specific approvals.</li>
+                        <li><strong>Maintenance:</strong> Ongoing maintenance is crucial for reliability. Some systems, like the Bronx Zoo's initial setup, faced challenges with upkeep and ensuring sufficient backup capacity during long outages.</li>
+                        <li><strong>Potential Emissions:</strong> If heavily reliant on fossil fuel generators (like diesel or natural gas) without sufficient renewable integration or storage, a microgrid could potentially increase local air pollution compared to cleaner grid power. Careful design is needed to maximize environmental benefits.</li>
+                        <li><strong>Cybersecurity:</strong> As sophisticated control systems, microgrids need robust cybersecurity measures to protect against potential threats.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="case-studies" class="section-case-studies">
+            <div class="section-content-wrapper">
+                <h2>Case Studies: Microgrids in Action</h2>
+                <p class="section-intro">Examining real-world examples helps illustrate the capabilities and challenges of microgrids, particularly in university and critical facility settings. These cases offer valuable lessons for resilience planning.</p>
+
+                <div class="case-studies-grid"> <!-- Use grid for layout -->
+                    <!-- Case Study 1: SRJC -->
+                    <article class="case-study-card"> <!-- Use article for each case study -->
+                        <h3>SRJC Microgrid (Santa Rosa Junior College, CA)</h3>
+                        <p class="overview">SRJC built a solar-powered microgrid on its Petaluma campus to stay open during wildfire season and statewide blackouts. It uses solar panels, battery storage, and smart controls.</p>
+
+                        <h4>Why It Worked Well:</h4>
+                        <ul>
+                            <li><strong>Emergency Resilience:</strong> Stayed open during PG&E power shutdowns, serving as a safe place.</li>
+                            <li><strong>Green Power:</strong> Solar panels and batteries enhance energy independence and cleanliness.</li>
+                            <li><strong>Education & Outreach:</strong> Provides learning opportunities and serves as a community model.</li>
+                        </ul>
+
+                        <h4>What Texas Can Learn:</h4>
+                        <p>Ideal for rural/semi-rural areas prone to outages. Schools, libraries, or city halls could use similar models for community support during emergencies.</p>
+                        <div class="case-study-links"> <!-- Group links -->
+                            <a href="https://sustainability.santarosa.edu/srjc-micro-grid" target="_blank" rel="noopener noreferrer" class="case-study-link">Learn More (SRJC Sustainability)</a>
+                        </div>
+                    </article>
+
+                    <!-- Case Study 2: UT Austin -->
+                    <article class="case-study-card">
+                        <h3>UT Austin Microgrid (University of Texas at Austin, TX)</h3>
+                        <p class="overview">UT Austin runs a self-contained, utility-grade energy system powering its campus with a Combined Heat and Power (CHP) plant, chilled water systems, solar panels, and smart meters. It's a leader in green microgrid technology.</p>
+
+                        <h4>Why It's So Successful & Green:</h4>
+                        <ul>
+                            <li><strong>Zero Unplanned Outages:</strong> Remained operational during Winter Storm Uri, providing essential services.</li>
+                            <li><strong>Green Energy Push:</strong> Incorporates rooftop solar and thermal storage, committed to carbon neutrality.</li>
+                            <li><strong>Efficient Design:</strong> Captures and reuses waste heat, saving money and cutting emissions.</li>
+                        </ul>
+
+                        <h4>What Texas Can Learn:</h4>
+                        <p>Demonstrates that large-scale systems can be sustainable and resilient. Applicable to hospitals, city campuses, and industrial parks, combining renewables and smart energy reuse.</p>
+                        <div class="case-study-links">
+                            <a href="https://peer.gbci.org/sites/default/files/resources/UT-Austin-Case-Study.pdf" target="_blank" rel="noopener noreferrer" class="case-study-link">UT Austin Case Study (PDF)</a>
+                            <a href="https://law.utexas.edu/transnational/events/field-trip-ut-power-plant/" target="_blank" rel="noopener noreferrer" class="case-study-link">More on UT Power Plant</a>
+                        </div>
+                    </article>
+
+                    <!-- Case Study 3: Bronx Zoo -->
+                    <article class="case-study-card">
+                        <h3>Bronx Zoo Microgrid (New York City, NY)</h3>
+                        <p class="overview">The Bronx Zoo installed a green microgrid (solar, batteries, fuel cells) to lower its carbon footprint and ensure power for sensitive animal habitats.</p>
+
+                        <h4>What Went Right:</h4>
+                        <ul>
+                            <li><strong>Green Innovation:</strong> Used clean energy sources aligned with its conservation mission.</li>
+                            <li><strong>Energy Cost Savings:</strong> Lowered utility bills and reduced grid reliance.</li>
+                            <li><strong>Backup Power:</strong> Maintained critical animal habitats during outages.</li>
+                        </ul>
+
+                        <h4>Challenges / What Went Wrong:</h4>
+                        <ul>
+                            <li><strong>Limited Storage:</strong> Battery capacity insufficient for longer blackouts.</li>
+                            <li><strong>High Maintenance:</strong> Fuel cells required frequent, skilled upkeep.</li>
+                            <li><strong>Public Misunderstanding:</strong> Perception of full self-sufficiency vs. reality of grid reliance.</li>
+                        </ul>
+
+                        <h4>What Texas Can Learn:</h4>
+                        <p>Highlights the need to balance green tech with reliability (sufficient storage/backup). Crucial for facilities like zoos or research centers that cannot afford power loss. Simple, maintainable designs are often better.</p>
+                        <div class="case-study-links">
+                            <a href="https://www.facilitiesdive.com/news/bronx-zoos-energy-overhaul-promises-nearly-500k-in-annual-cost-savings-n/716823/" target="_blank" rel="noopener noreferrer" class="case-study-link">Bronx Zoo Energy Overhaul</a>
+                            <a href="https://www.amny.com/sponsored/con-edison-and-bronx-zoos-waste-heat-project/" target="_blank" rel="noopener noreferrer" class="case-study-link">Waste Heat Project Info</a>
+                        </div>
+                    </article>
+                </div> <!-- /.case-studies-grid -->
+            </div>
+        </section>
+
+        <section id="global-map" class="section-map">
+            <div class="section-content-wrapper">
+                <h2>Global Microgrid Examples</h2>
+                <p>Microgrids are being deployed worldwide in diverse applications. This map showcases examples ranging from remote community power systems to industrial facilities, military bases, and university campuses, illustrating the global trend towards localized, resilient energy solutions.</p>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/d/embed?mid=1epJU454zp0jOsimtUOIdxKscbd-UkL4&ehbc=2E312F"
+                        width="100%"
+                        height="480" <!-- Added a default height -->
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Added University Initiatives Section -->
+        <section id="texas-initiatives" class="section-initiatives">
+            <div class="section-content-wrapper">
+                <h2>University Initiatives in Texas</h2>
+                <p>Several universities in Texas are actively exploring or implementing advanced energy solutions, including microgrids and large-scale renewable projects.</p>
+                <div class="image-gallery-grid"> <!-- Use grid for layout -->
+
+                    <figure class="image-figure">
+                        <img src="images/UT1.png" alt="UT Austin campus energy infrastructure diagram">
+                        <figcaption>UT Austin's established combined heat and power system.</figcaption>
+                    </figure>
+
+                    <figure class="image-figure">
+                        <img src="images/UT2.png" alt="UT Austin renewable energy integration graphic">
+                        <figcaption>UT Austin's focus on integrating renewables and efficiency.</figcaption>
+                    </figure>
+
+                    <figure class="image-figure">
+                        <img src="images/AnM.png" alt="Texas A&M RELLIS campus microgrid project overview">
+                        <figcaption>Texas A&M's RELLIS campus microgrid initiative.</figcaption>
+                    </figure>
+
+                    <figure class="image-figure">
+                        <img src="images/AnM_grid.png" alt="Texas A&M grid infrastructure diagram">
+                        <figcaption>Details of Texas A&M's grid integration.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section id="uh-map" class="section-map">
+            <div class="section-content-wrapper">
+                <h2>UH Campus Microgrid Overview</h2>
+                <p>This map provides a geographical overview of the University of Houston campus, highlighting key buildings and infrastructure relevant to its energy system. Explore the potential locations for components of a future campus microgrid.</p>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/d/embed?mid=1n5My0H802elRh-pktsb7AW4JVAxAVrA&hl=en&ehbc=2E312F"
+                        width="100%"
+                        height="480" <!-- Added a default height -->
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="uh-focus" class="section-uh-focus">
+            <div class="section-content-wrapper">
+                <h2>Focus: University of Houston Energy</h2>
+
+                <article class="uh-topic">
+                    <h3 id="uh-current">Current UH Energy System: The Central Plant</h3>
+                    <p>
+                        The University of Houston's campus operations rely heavily on its Central Plant facility. This plant distributes essential utilities like electricity, chilled water (for cooling), and steam (for heating and other processes) throughout the campus via an extensive network of underground tunnels (approximately 3 miles long). While the plant manages internal distribution, UH currently receives all its electricity from the external Texas grid (ERCOT), supplied via CenterPoint Energy.
+                    </p>
+                    <p>
+                        The plant has significant capacity, generating about 18,000 tons of chilled water and managing a peak electrical demand around 33 MW. Expansions over the years have added chillers, boilers, and cooling towers. UH has also incorporated some sustainability measures, including 88 rooftop solar panels on the plant itself (powering low-voltage equipment) and automated systems for energy balancing. However, the campus remains fully dependent on the external grid for its primary power supply.
+                    </p>
+                    <p>
+                        You can learn more about the utility tunnel system in the <a href="https://uh.edu/facilities-services/programs/facilities%20services%20safety%20program%20/ehls-final-utility_tunnel_safety_manual-with-ehls-changes-rmade-9-19.pdf" target="_blank" rel="noopener noreferrer">UH Utility Tunnel Safety Manual (PDF)</a>.
+                    </p>
+                </article>
+
+                <div class="uh-collage-gallery"> <!-- Use a class for styling the gallery -->
+                    <h4 id="uh-gallery-heading">Central Plant & Infrastructure Gallery</h4>
+                    <!-- Use figure for each image in the gallery -->
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/flooded_tunnel_1.jpeg" alt="Flooded section of a UH tunnel">
+                        <figcaption>Flooded section of a UH tunnel</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/light_tunnel.jpeg" alt="Well-lit section of a UH tunnel">
+                        <figcaption>Well-lit section of a UH tunnel</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/nighttime_uh.jpeg" alt="Nighttime view of UH campus area">
+                        <figcaption>Nighttime view of UH campus area</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/pipes_and_wires.jpeg" alt="View inside UH tunnel showing pipes and wires">
+                        <figcaption>View inside UH tunnel showing pipes and wires</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/shasta_in_the_tunnel.jpeg" alt="Shasta mascot graphic inside a UH tunnel">
+                        <figcaption>Shasta mascot graphic inside a UH tunnel</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/something_with_a_pipe.jpeg" alt="UH tunnel infrastructure including a large pipe">
+                        <figcaption>UH tunnel infrastructure including a large pipe</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/tube_room.jpeg" alt="Room with tube-like structures, possibly part of the tunnel system">
+                        <figcaption>Room with tube-like structures, possibly part of the tunnel system</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/tunnel_1.jpeg" alt="General view inside a UH utility tunnel">
+                        <figcaption>General view inside a UH utility tunnel</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/tunnel_cage.jpeg" alt="Caged-off area within a UH tunnel">
+                        <figcaption>Caged-off area within a UH tunnel</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/tunnel_elbows.jpeg" alt="Section of UH tunnel showing pipe elbows">
+                        <figcaption>Section of UH tunnel showing pipe elbows</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/uh_history_poster_in_tunnel.jpeg" alt="UH history poster displayed inside a tunnel">
+                        <figcaption>UH history poster displayed inside a tunnel</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/underground_control_room.jpeg" alt="Underground control room associated with UH infrastructure">
+                        <figcaption>Underground control room associated with UH infrastructure</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/vault_door.jpeg" alt="Heavy vault door within the UH tunnel system">
+                        <figcaption>Heavy vault door within the UH tunnel system</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/vertical_pipes.jpeg" alt="Vertical pipes running inside a UH tunnel">
+                        <figcaption>Vertical pipes running inside a UH tunnel</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/uh_central_plant_and_tunnels/underground.png" alt="UH logo and Facilities">
+                        <figcaption>UH logo and Facilities</figcaption>
+                    </figure>
+                </div>
+
+                <article class="uh-topic">
+                    <h3 id="uh-proposal">Proposed UH Microgrid</h3>
+                    <p>
+                        There is significant potential for UH to develop its own microgrid to enhance resilience, sustainability, and educational opportunities. Drawing inspiration from neighbors like Rice University (which uses a CHP plant and solar), a hypothetical UH microgrid could incorporate several key technologies:
+                    </p>
+                    <ul>
+                        <li><strong>Solar Power:</strong> Leveraging ample rooftop space and parking structures for large-scale solar panel installations (potentially 10-15 MW capacity).</li>
+                        <li><strong>Combined Heat and Power (CHP):</strong> Utilizing the existing steam and chilled water infrastructure by integrating natural gas turbines to generate electricity alongside thermal energy (potentially 10-15 MW capacity). CHP systems offer high efficiency (around 80% compared to ~50% for separate generation).</li>
+                        <li><strong>Battery Storage:</strong> Installing lithium-ion batteries to store excess solar energy, manage peak demand, and provide critical backup power during islanding.</li>
+                        <li><strong>Advanced Controls:</strong> Implementing smart controllers, load management systems, and demand response capabilities to optimize energy use and ensure stability.</li>
+                    </ul>
+                    <p>
+                        **Benefits:** Such a system would significantly improve energy resilience against grid outages (vital during hurricanes or freezes), reduce carbon emissions (especially with high solar penetration), potentially lower long-term energy costs (Rice reports ~$2M annual savings), and create invaluable research and learning opportunities for students in engineering and energy fields. The campus could even serve as a community resilience hub during emergencies.
+                    </p>
+                    <p>
+                        **Challenges:** The primary hurdle is the substantial upfront capital cost (estimated $20-$50 million), requiring careful financial planning and likely leveraging grants, partnerships, or phased implementation. Regulatory complexities with ERCOT and CenterPoint regarding interconnection and islanding would need resolution. Ongoing maintenance and cybersecurity are also critical considerations. A pilot project, perhaps at the Technology Bridge campus, could be a feasible first step.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="funding-policy" class="section-funding-policy">
+            <div class="section-content-wrapper">
+                <h2>Funding and Policy Landscape</h2>
+                <p>Developing microgrids involves significant investment, but various funding mechanisms and supportive policies are emerging:</p>
+
+                <article class="policy-topic">
+                    <h3 id="funding-sources">Funding Sources</h3>
+                    <ul>
+                        <li><strong>Federal Grants:</strong> Programs like the U.S. Department of Energy's (DOE) Microgrid Program, Grid Deployment Office initiatives, and FEMA's Hazard Mitigation Assistance offer grants, particularly for projects enhancing resilience and integrating renewables.</li>
+                        <li><strong>Tax Credits:</strong> The Inflation Reduction Act (IRA) provides significant investment tax credits for solar, battery storage, and other microgrid components, substantially lowering project costs.</li>
+                        <li><strong>State Programs:</strong> Texas has programs like the Texas Energy Reliability Program (potentially expanding) and proposed legislation (e.g., Texas Microgrid and Resiliency Act) aimed at supporting grid stability and resilience projects.</li>
+                        <li><strong>Utility Partnerships:</strong> Collaboration with utilities (like CenterPoint) can sometimes unlock funding or streamline interconnection.</li>
+                        <li><strong>Private Investment & ESPCs:</strong> Energy Savings Performance Contracts allow institutions to partner with private companies to finance and implement energy projects, paying them back through the achieved savings.</li>
+                        <li><strong>Institutional Funding:</strong> Universities can allocate funds from sustainability budgets, capital improvement plans, or research grants.</li>
+                    </ul>
+                </article>
+
+                <article class="policy-topic">
+                    <h3 id="policy-advocacy">Policy and Advocacy</h3>
+                    <p>
+                        Supportive policies are crucial for accelerating microgrid adoption. Key areas include:
+                    </p>
+                    <ul>
+                        <li>Streamlining interconnection standards and tariffs for microgrids.</li>
+                        <li>Clarifying regulations around islanding capabilities.</li>
+                        <li>Continued funding for federal and state grant programs.</li>
+                        <li>Incentivizing resilience benefits provided by microgrids.</li>
+                    </ul>
+                    <p>
+                        Institutions like UH can play a role by advocating for supportive policies at state and federal levels, potentially partnering with other universities and organizations. Engaging with programs like the DOE's Grid Resilience Innovation Partnership (GRIP) and aligning with local initiatives like the Resilient Houston plan can also strengthen proposals and impact.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <div class="section-content-wrapper image-full-width"> <!-- Wrapper for full width image -->
+            <figure class="image-figure">
+                <img src="images/us-microgrid-market.png" alt="US Microgrid Market Growth Projection">
+                <figcaption>US Microgrid Market Growth Projection</figcaption>
+            </figure>
+        </div>
+
+        <!-- Project Poster Image -->
+        <div class="section-content-wrapper image-full-width">
+            <figure class="image-figure project-poster">
+                <a href="https://github.com/stragitech/uh_microgrid_feasibility" target="_blank" rel="noopener noreferrer" title="Get Involved!">
+                    <img src="images/poster.png"
+                         alt="Project Poster summarizing the UH Microgrid Feasibility Study">
+                </a>
+                <figcaption>Click the poster to learn more about this open source project on GitHub!</figcaption>
+            </figure>
+        </div>
+
+        <section id="resources" class="section-resources">
+            <div class="section-content-wrapper">
+                <h2>Resources & Further Reading</h2>
+                <p>Explore these links for more detailed information:</p>
+                <ul class="resource-list"> <!-- Use a class for styling the list -->
+                    <li><a href="https://www.energy.gov/oe/services/technology-development/smart-grid/microgrids" target="_blank" rel="noopener noreferrer">U.S. Department of Energy - Office of Electricity Microgrids</a></li>
+                    <li><a href="https://www.energy.gov/oe/microgrid-program-strategy" target="_blank" rel="noopener noreferrer">DOE Microgrid Program Strategy</a></li>
+                    <li><a href="https://www.energy.gov/gdo/grid-deployment-office" target="_blank" rel="noopener noreferrer">DOE Grid Deployment Office (GDO)</a></li>
+                    <li><a href="https://www.energy.gov/gdo/inflation-reduction-act" target="_blank" rel="noopener noreferrer">DOE GDO - Inflation Reduction Act Information</a></li>
+                    <li><a href="https://www.energy.gov/gdo/grid-resilience-and-innovation-partnerships-grip-program" target="_blank" rel="noopener noreferrer">DOE GDO - GRIP Program</a></li>
+                    <li><a href="https://building-microgrid.lbl.gov/" target="_blank" rel="noopener noreferrer">Berkeley Lab - Building Microgrid Research</a></li>
+                    <li><a href="https://www.nrel.gov/grid/microgrids.html" target="_blank" rel="noopener noreferrer">NREL - Microgrid Research</a></li>
+                    <li><a href="https://microgridknowledge.com/" target="_blank" rel="noopener noreferrer">Microgrid Knowledge (News & Articles)</a></li>
+                    <li><a href="https://utilities.utexas.edu/about-us/resources/ut-austin-energy-data" target="_blank" rel="noopener noreferrer">UT Austin Energy Data & Resources</a></li>
+                    <li><a href="https://uh.edu/facilities-services/programs/facilities%20services%20safety%20program%20/ehls-final-utility_tunnel_safety_manual-with-ehls-changes-rmade-9-19.pdf" target="_blank" rel="noopener noreferrer">UH Utility Tunnel Safety Manual (PDF)</a></li>
+                     <li><a href="https://greenpowerenergy.com/whats-a-solar-battery-microgrid-how-does-it-power-your-home-during-outages-in-durham/" target="_blank" rel="noopener noreferrer">Example: Solar + Battery Microgrid Explanation</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content-wrapper">
+            <p>&copy; 2023 UH Microgrid Feasibility Study. All rights reserved.</p> <!-- Added a placeholder copyright -->
+            <p>
+                <a href="https://github.com/stragitech/uh_microgrid_feasibility" target="_blank" rel="noopener noreferrer" class="github-link">LEARN MORE ABOUT THIS OPEN SOURCE PROJECT!</a>
+            </p>
+            <!-- Potential: Add social media links or other footer content -->
+        </div>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to existing JS, will need updates -->
+    <!-- Potential: Add links to modern JS libraries or frameworks -->
+</body>
+</html>
