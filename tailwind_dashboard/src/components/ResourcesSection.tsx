@@ -6,7 +6,7 @@ const ResourcesSection = () => {
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center text-red-700 mb-4">Resources & Further Reading</h2>
         <p className="text-center max-w-3xl mx-auto mb-8 text-gray-600">Explore these links for more detailed information:</p>
-        <ul className="list-disc list-inside mb-4 text-gray-700 max-w-3xl mx-auto">
+        <ul className="list-disc list-inside mb-8 text-gray-700 max-w-3xl mx-auto ml-5">
           <li className="mb-2"><Link href="https://www.energy.gov/oe/services/technology-development/smart-grid/microgrids" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">U.S. Department of Energy - Office of Electricity Microgrids</Link></li>
           <li className="mb-2"><Link href="https://www.energy.gov/oe/microgrid-program-strategy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DOE Microgrid Program Strategy</Link></li>
           <li className="mb-2"><Link href="https://www.energy.gov/gdo/grid-deployment-office" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">DOE Grid Deployment Office (GDO)</Link></li>

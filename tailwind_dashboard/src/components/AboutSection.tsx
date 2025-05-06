@@ -11,7 +11,7 @@ const AboutSection = () => {
           A microgrid is a localized group of electricity sources and loads that normally operates connected to the traditional centralized electrical grid (macrogrid) but can also disconnect and operate autonomously. Think of it as a small-scale version of the main grid that can function independently when needed.
         </p>
         <p className="mb-4">
-          The defining feature is its ability to intentionally "island" itself from the macrogrid during outages or disturbances, using its own local energy resources to power its designated loads. This capability is managed by a sophisticated microgrid controller.
+          The defining feature is its ability to intentionally &quot;island&quot; itself from the macrogrid during outages or disturbances, using its own local energy resources to power its designated loads. This capability is managed by a sophisticated microgrid controller.
         </p>
         <div className="text-center my-6">
           <Image
@@ -33,7 +33,7 @@ const AboutSection = () => {
 
         <h2 id="how-work" className="text-2xl font-semibold text-gray-800 mb-3 mt-8">How do they Work?</h2>
         <p className="mb-4">
-          A microgrid's operation is orchestrated by its <strong>control system</strong>. This "brain" manages the flow of energy within the microgrid, balancing generation sources (solar, CHP, batteries, generators) with the energy demands of the connected buildings and loads.
+          A microgrid&apos;s operation is orchestrated by its <strong>control system</strong>. This &quot;brain&quot; manages the flow of energy within the microgrid, balancing generation sources (solar, CHP, batteries, generators) with the energy demands of the connected buildings and loads.
         </p>
         <p className="mb-4">
           <strong>Grid-Connected Mode:</strong> When connected to the main grid, the microgrid can import power when local generation is insufficient or export excess power. The controller optimizes this interaction based on energy prices, grid conditions, or pre-defined goals (like minimizing cost or carbon footprint).
@@ -65,7 +65,7 @@ const AboutSection = () => {
         <ul className="list-disc list-inside mb-4">
           <li><strong>Local Generation:</strong> Sources like solar panels (PV), wind turbines, combined heat and power (CHP) plants, natural gas generators, or fuel cells.</li>
           <li><strong>Energy Storage:</strong> Often lithium-ion batteries, used to store excess energy, smooth out fluctuations from renewables, and provide power during islanding.</li>
-          <li><strong>Loads:</strong> The buildings, equipment, and devices that consume electricity within the microgrid's boundary. These can sometimes be categorized as critical (must stay powered) and non-critical (can be shed if necessary).</li>
+          <li><strong>Loads:</strong> The buildings, equipment, and devices that consume electricity within the microgrid&apos;s boundary. These can sometimes be categorized as critical (must stay powered) and non-critical (can be shed if necessary).</li>
           <li><strong>Point of Common Coupling (PCC):</strong> The switchgear and controls that form the interface between the microgrid and the main utility grid, allowing connection and disconnection.</li>
           <li><strong>Microgrid Controller:</strong> The central intelligence that monitors conditions, manages resources, controls the PCC, and optimizes operation in both grid-connected and island modes.</li>
         </ul>
@@ -78,7 +78,7 @@ const AboutSection = () => {
           <li><strong>Cost:</strong> Initial capital investment for generation, storage, and control systems can be substantial, often requiring significant funding or financing arrangements.</li>
           <li><strong>Complexity:</strong> Designing, integrating, and operating the various components requires specialized expertise. Control systems need careful configuration and maintenance.</li>
           <li><strong>Regulatory Hurdles:</strong> Interconnecting with the utility grid involves navigating regulations, tariffs, and agreements, which can vary significantly by location. Islanding capabilities may require specific approvals.</li>
-          <li><strong>Maintenance:</strong> Ongoing maintenance is crucial for reliability. Some systems, like the Bronx Zoo's initial setup, faced challenges with upkeep and ensuring sufficient backup capacity during long outages.</li>
+          <li><strong>Maintenance:</strong> Ongoing maintenance is crucial for reliability. Some systems, like the Bronx Zoo&apos;s initial setup, faced challenges with upkeep and ensuring sufficient backup capacity during long outages.</li>
           <li><strong>Potential Emissions:</strong> If heavily reliant on fossil fuel generators (like diesel or natural gas) without sufficient renewable integration or storage, a microgrid could potentially increase local air pollution compared to cleaner grid power. Careful design is needed to maximize environmental benefits.</li>
           <li><strong>Cybersecurity:</strong> As sophisticated control systems, microgrids need robust cybersecurity measures to protect against potential threats.</li>
         </ul>

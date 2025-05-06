@@ -9,7 +9,7 @@ const UHFocusSection = () => {
 
         <h3 id="uh-current" className="text-2xl font-semibold text-gray-800 mb-3 mt-8">Current UH Energy System: The Central Plant</h3>
         <p className="mb-4 text-gray-700">
-          The University of Houston's campus operations rely heavily on its Central Plant facility. This plant distributes essential utilities like electricity, chilled water (for cooling), and steam (for heating and other processes) throughout the campus via an extensive network of underground tunnels (approximately 3 miles long). While the plant manages internal distribution, UH currently receives all its electricity from the external Texas grid (ERCOT), supplied via CenterPoint Energy.
+          The University of Houston&apos;s campus operations rely heavily on its Central Plant facility. This plant distributes essential utilities like electricity, chilled water (for cooling), and steam (for heating and other processes) throughout the campus via an extensive network of underground tunnels (approximately 3 miles long). While the plant manages internal distribution, UH currently receives all its electricity from the external Texas grid (ERCOT), supplied via CenterPoint Energy.
         </p>
         <p className="mb-4 text-gray-700">
           The plant has significant capacity, generating about 18,000 tons of chilled water and managing a peak electrical demand around 33 MW. Expansions over the years have added chillers, boilers, and cooling towers. UH has also incorporated some sustainability measures, including 88 rooftop solar panels on the plant itself (powering low-voltage equipment) and automated systems for energy balancing. However, the campus remains fully dependent on the external grid for its primary power supply.
@@ -20,21 +20,21 @@ const UHFocusSection = () => {
 
         <h4 id="uh-gallery-heading" className="text-xl font-semibold text-gray-800 mb-4 mt-8 text-center">Central Plant & Infrastructure Gallery</h4>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-screen-lg mx-auto">
-          <Image src="/images/uh_central_plant_and_tunnels/flooded_tunnel_1.jpeg" alt="Flooded section of a UH tunnel" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/light_tunnel.jpeg" alt="Well-lit section of a UH tunnel" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/nighttime_uh.jpeg" alt="Nighttime view of UH campus area" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/pipes_and_wires.jpeg" alt="View inside UH tunnel showing pipes and wires" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/shasta_in_the_tunnel.jpeg" alt="Shasta mascot graphic inside a UH tunnel" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/something_with_a_pipe.jpeg" alt="UH tunnel infrastructure including a large pipe" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/tube_room.jpeg" alt="Room with tube-like structures, possibly part of the tunnel system" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/tunnel_1.jpeg" alt="General view inside a UH utility tunnel" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/tunnel_cage.jpeg" alt="Caged-off area within a UH tunnel" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/tunnel_elbows.jpeg" alt="Section of UH tunnel showing pipe elbows" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/uh_history_poster_in_tunnel.jpeg" alt="UH history poster displayed inside a tunnel" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/underground_control_room.jpeg" alt="Underground control room associated with UH infrastructure" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/vault_door.jpeg" alt="Heavy vault door within the UH tunnel system" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/vertical_pipes.jpeg" alt="Vertical pipes running inside a UH tunnel" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/underground.png" alt="UH logo and Facilities" width={300} height={200} className="w-full h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/flooded_tunnel_1.jpeg" alt="Flooded section of a UH tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/light_tunnel.jpeg" alt="Well-lit section of a UH tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/nighttime_uh.jpeg" alt="Nighttime view of UH campus area" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/pipes_and_wires.jpeg" alt="View inside UH tunnel showing pipes and wires" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/shasta_in_the_tunnel.jpeg" alt="Shasta mascot graphic inside a UH tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/something_with_a_pipe.jpeg" alt="UH tunnel infrastructure including a large pipe" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/tube_room.jpeg" alt="Room with tube-like structures, possibly part of the tunnel system" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/tunnel_1.jpeg" alt="General view inside a UH utility tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/tunnel_cage.jpeg" alt="Caged-off area within a UH tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/tunnel_elbows.jpeg" alt="Section of UH tunnel showing pipe elbows" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/uh_history_poster_in_tunnel.jpeg" alt="UH history poster displayed inside a tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/underground_control_room.jpeg" alt="Underground control room associated with UH infrastructure" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/vault_door.jpeg" alt="Heavy vault door within the UH tunnel system" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/vertical_pipes.jpeg" alt="Vertical pipes running inside a UH tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+          <Image src="/images/uh_central_plant_and_tunnels/underground.png" alt="UH logo and Facilities" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
         </div>
 
         <h3 id="uh-proposal" className="text-2xl font-semibold text-gray-800 mb-3 mt-8">Proposed UH Microgrid</h3>

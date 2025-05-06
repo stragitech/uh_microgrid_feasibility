@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "tailwind_dashboard/out",
     "ignore": [
       "firebase.json",
       "**/.*",
