@@ -29,4 +29,7 @@
 - **Focus on relevant code.** Concentrate on the code directly related to the task.  
 - **Write thorough tests for all major functionality.** Ensure adequate test coverage.  
 - **Avoid major architectural changes without explicit instructions.** Maintain existing patterns unless specifically directed otherwise.  
-- **Consider potential impacts of code changes.** Evaluate the effects on other parts of the codebase.  
+- **Consider potential impacts of code changes.** Evaluate the effects on other parts of the codebase. 
+
+## When Adding Text
+- **Special Characters.**  For a single quote ('): use &apos; or &#39; For a double quote ("): use &quot; or &#34;
