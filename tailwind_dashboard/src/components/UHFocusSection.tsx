@@ -1,9 +1,52 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const UHFocusSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            // Optionally stop observing once visible
+            // observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px',
+        threshold: 0.1, // Trigger when 10% of the section is visible
+      }
+    );
+
+    const currentRef = sectionRef.current; // Capture the current ref value
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    // Cleanup function
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []); // Empty dependency array means this effect runs once on mount
   return (
-    <section id="uh-focus" className="py-12 px-4 bg-gray-100">
+    <section
+      id="uh-focus"
+      ref={sectionRef}
+      className={`py-12 px-4 bg-gray-100 transition-all duration-600 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+      }`}
+    >
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center text-red-700 mb-4">Focus: University of Houston Energy</h2>
 
