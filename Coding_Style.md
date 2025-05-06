@@ -20,7 +20,7 @@
 
 - **Use a popular stack.** Opt for widely adopted technologies for better AI performance and documentation support.  
   - **Back‑end:** Python  
-  - **Front‑end:** HTML, JavaScript, React, Bootstrap
+  - **Front‑end:** HTML, JavaScript, React, Next JS, Tailwind
   - **Database:** SQL (separate databases for Dev, Test, and Prod)  
   - **Search:** Elastic Search (hosted version)
 
