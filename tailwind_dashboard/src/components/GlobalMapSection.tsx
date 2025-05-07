@@ -47,7 +47,7 @@ const GlobalMapSection = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-red-700 mb-4">Global Microgrid Examples</h2>
+        <h2 className="text-3xl font-bold text-center text-red-700 mb-4">Microgrids in the US</h2>
         <p className="text-center max-w-3xl mx-auto mb-8 text-gray-600">Microgrids are being deployed worldwide in diverse applications. This map showcases examples ranging from remote community power systems to industrial facilities, military bases, and university campuses, illustrating the global trend towards localized, resilient energy solutions.</p>
         <div className="relative w-full max-w-screen-xl mx-auto" style={{ paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}> {/* 16:9 Aspect Ratio */}
           <iframe

@@ -6,7 +6,10 @@ import Link from 'next/link';
 
 const UHFocusSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [imageVisibility, setImageVisibility] = useState<Record<number, boolean>>({});
   const sectionRef = useRef(null);
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const galleryContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -14,8 +17,6 @@ const UHFocusSection = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
-            // Optionally stop observing once visible
-            // observer.unobserve(entry.target);
           }
         });
       },
@@ -32,13 +33,99 @@ const UHFocusSection = () => {
       observer.observe(currentRef);
     }
 
-    // Cleanup function
+    // Cleanup function for section observer
     return () => {
       if (currentRef) {
         observer.unobserve(currentRef);
       }
     };
   }, []); // Empty dependency array means this effect runs once on mount
+
+  useEffect(() => {
+    const imageObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = imageRefs.current.indexOf(entry.target as HTMLDivElement);
+          if (index !== -1) {
+            setImageVisibility(prev => ({
+              ...prev,
+              [index]: entry.isIntersecting,
+            }));
+          }
+        });
+      },
+      {
+        root: null, // Use the viewport as the root
+        rootMargin: '0px',
+        threshold: 0.5, // Trigger when 50% of the image is visible
+      }
+    );
+
+    // Capture the current refs at the time this effect runs - FIX 1
+    const currentImageRefs = [...imageRefs.current];
+
+    currentImageRefs.forEach(ref => {
+      if (ref) {
+        imageObserver.observe(ref);
+      }
+    });
+
+    // Cleanup function for image observers
+    return () => {
+      // Use the captured refs in cleanup - FIX 1
+      currentImageRefs.forEach(ref => {
+        if (ref) {
+          imageObserver.unobserve(ref);
+        }
+      });
+    };
+  }, []); // Remove dependency on imageRefs.current.length
+
+  useEffect(() => {
+    const container = galleryContainerRef.current;
+    if (!container) return;
+
+    let animationFrameId: number;
+    const scrollSpeed = 0.5; // Adjust scroll speed here
+
+    const scroll = () => {
+      if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
+        // If scrolled to the end, jump back to the beginning
+        container.scrollLeft = 0;
+      } else {
+        container.scrollLeft += scrollSpeed;
+      }
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+
+    // Start scrolling after a short delay
+    const startScrolling = setTimeout(() => {
+      scroll();
+    }, 1000); // Delay in milliseconds
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      clearTimeout(startScrolling);
+    };
+  }, []); // Empty dependency array means this effect runs once on mount
+
+  const imagePaths = [
+    "/images/uh_central_plant_and_tunnels/flooded_tunnel_1.jpeg",
+    "/images/uh_central_plant_and_tunnels/light_tunnel.jpeg",
+    "/images/uh_central_plant_and_tunnels/nighttime_uh.jpeg",
+    "/images/uh_central_plant_and_tunnels/pipes_and_wires.jpeg",
+    "/images/uh_central_plant_and_tunnels/shasta_in_the_tunnel.jpeg",
+    "/images/uh_central_plant_and_tunnels/something_with_a_pipe.jpeg",
+    "/images/uh_central_plant_and_tunnels/tube_room.jpeg",
+    "/images/uh_central_plant_and_tunnels/tunnel_1.jpeg",
+    "/images/uh_central_plant_and_tunnels/tunnel_cage.jpeg",
+    "/images/uh_central_plant_and_tunnels/tunnel_elbows.jpeg",
+    "/images/uh_central_plant_and_tunnels/uh_history_poster_in_tunnel.jpeg",
+    "/images/uh_central_plant_and_tunnels/underground_control_room.jpeg",
+    "/images/uh_central_plant_and_tunnels/vertical_pipes.jpeg",
+    "/images/uh_central_plant_and_tunnels/underground.png",
+  ];
+
   return (
     <section
       id="uh-focus"
@@ -49,6 +136,16 @@ const UHFocusSection = () => {
     >
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center text-red-700 mb-4">Focus: University of Houston Energy</h2>
+{/* UH Central Plant Image */}
+        <div className="flex justify-center mb-8">
+          <Image
+            src="/images/uh_central_plant_and_tunnels/UHCentralPlantAngle.jpg"
+            alt="University of Houston Central Plant"
+            width={800} 
+            height={500} 
+            className="rounded-lg shadow-lg"
+          />
+        </div>
 
         <h3 id="uh-current" className="text-2xl font-semibold text-gray-800 mb-3 mt-8">Current UH Energy System: The Central Plant</h3>
         <p className="mb-4 text-gray-700">
@@ -62,22 +159,25 @@ const UHFocusSection = () => {
         </p>
 
         <h4 id="uh-gallery-heading" className="text-xl font-semibold text-gray-800 mb-4 mt-8 text-center">Central Plant & Infrastructure Gallery</h4>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-screen-lg mx-auto">
-          <Image src="/images/uh_central_plant_and_tunnels/flooded_tunnel_1.jpeg" alt="Flooded section of a UH tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/light_tunnel.jpeg" alt="Well-lit section of a UH tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/nighttime_uh.jpeg" alt="Nighttime view of UH campus area" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/pipes_and_wires.jpeg" alt="View inside UH tunnel showing pipes and wires" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/shasta_in_the_tunnel.jpeg" alt="Shasta mascot graphic inside a UH tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/something_with_a_pipe.jpeg" alt="UH tunnel infrastructure including a large pipe" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/tube_room.jpeg" alt="Room with tube-like structures, possibly part of the tunnel system" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/tunnel_1.jpeg" alt="General view inside a UH utility tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/tunnel_cage.jpeg" alt="Caged-off area within a UH tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/tunnel_elbows.jpeg" alt="Section of UH tunnel showing pipe elbows" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/uh_history_poster_in_tunnel.jpeg" alt="UH history poster displayed inside a tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/underground_control_room.jpeg" alt="Underground control room associated with UH infrastructure" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/vault_door.jpeg" alt="Heavy vault door within the UH tunnel system" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/vertical_pipes.jpeg" alt="Vertical pipes running inside a UH tunnel" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
-          <Image src="/images/uh_central_plant_and_tunnels/underground.png" alt="UH logo and Facilities" width={300} height={200} className="w-full h-[150px] md:h-auto object-cover rounded-md shadow-md" />
+        <div className="overflow-x-auto py-4 bg-gray-800 rounded-lg shadow-inner border border-gray-700" ref={galleryContainerRef}> {/* Container for horizontal scrolling with underground vibe */}
+          <div className="flex space-x-6 px-4"> {/* Flex container for images with spacing */}
+            {/* Array of image paths */}
+            {imagePaths.map((imagePath, index) => (
+              <div
+                key={index}
+                ref={el => { imageRefs.current[index] = el; }}
+                className={`flex-shrink-0 w-80 transition-opacity duration-1000 ${imageVisibility[index] ? 'opacity-100' : 'opacity-0'}`} // Add transition and opacity classes
+              > {/* Wrapper for each image, adjust width */}
+                <Image
+                  src={imagePath}
+                  alt={`UH Tunnel Gallery Image ${index + 1}`}
+                  width={400} // Adjust size
+                  height={300} // Adjust size
+                  className="rounded-md shadow-lg object-cover w-full h-auto border border-gray-600" // Adjust classes and add border
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         <h3 id="uh-proposal" className="text-2xl font-semibold text-gray-800 mb-3 mt-8">Proposed UH Microgrid</h3>

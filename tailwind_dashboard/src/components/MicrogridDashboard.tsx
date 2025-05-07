@@ -403,7 +403,7 @@ const MicrogridDashboard = () => {
     <div className="flex flex-col min-h-screen bg-gray-900 text-white p-4">
       {/* Dashboard Header */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-blue-400 mb-2 md:mb-0">Microgrid Power Analysis Dashboard</h1>
+        <h1 className="text-3xl font-bold text-blue-400 mb-2 md:mb-0">US Microgrid Power Analysis Dashboard</h1>
         <div className="bg-gray-800 p-2 rounded-lg flex gap-4">
           <div className="flex flex-col items-center">
             <span className="text-xs text-gray-400">TOTAL CAPACITY</span>
@@ -963,7 +963,7 @@ const MicrogridDashboard = () => {
       
       {/* Dashboard Footer */}
       <div className="mt-6 text-center text-gray-500 text-sm">
-        <p>Microgrid Power Analysis Dashboard • {microgridData.length} Microgrids Analyzed</p>
+        <p>Microgrid Power Analysis Dashboard • {microgridData.length} Microgrids Analyzed from the Department of Energy Dataset</p>
       </div>
     </div>
   );
