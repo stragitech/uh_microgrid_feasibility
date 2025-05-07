@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -110,6 +109,9 @@ const renderActiveShape = (props: ActiveShapeProps) => {
 
 const MicrogridDashboard = () => {
   // Define interface for the microgrid data structure
+  // Define interface for the microgrid data structure
+  type TechKey = 'Total Capacity (kW)' | 'Generation Capacity (kW)' | 'Storage Capacity (kW)' | 'CHP Capacity (kW)' | 'Solar Capacity (kW)' | 'Wind Capacity (kW)' | 'Hydro Capacity (kW)' | 'Fuel Cell Capacity (kW)' | 'Diesel Capacity (kW)' | 'Natural Gas Capacity (kW)' | 'Biogas Capacity (kW)' | 'Other Capacity (kW)';
+
   interface MicrogridDataItem {
     'Total Capacity (kW)': number;
     'Generation Capacity (kW)': number;
@@ -129,7 +131,7 @@ const MicrogridDashboard = () => {
     'Grid Connected': string;
     'Primary Application': string;
     'Operational Year': string;
-    [key: string]: number | string; // Allow string indexing for dynamic access
+    [key: string]: number | string | undefined; // Allow string indexing for dynamic access, include undefined
   }
 
   const [microgridData, setMicrogridData] = useState<MicrogridDataItem[]>([]);
@@ -225,7 +227,7 @@ const MicrogridDashboard = () => {
     'Other Capacity (kW)'
   ];
   
-  const techNames = {
+  const techNames: Record<TechKey, string> = {
     'Solar Capacity (kW)': 'Solar',
     'Wind Capacity (kW)': 'Wind',
     'Hydro Capacity (kW)': 'Hydro',
@@ -238,7 +240,7 @@ const MicrogridDashboard = () => {
   };
   
   const totalByTech = techColumns.map(tech => {
-    const total = microgridData.reduce((sum, item) => sum + (item[tech] || 0), 0);
+    const total = microgridData.reduce((sum, item) => sum + (item[tech] as number || 0), 0);
     return {
       name: techNames[tech],
       value: total
@@ -287,8 +289,8 @@ const MicrogridDashboard = () => {
       };
       
       const techTotals = techColumns.reduce((acc, tech) => {
-        const techName = techNames[tech];
-        acc[techName.toLowerCase()] = stateData.reduce((sum, item) => sum + (item[tech] || 0), 0);
+        const techName = techNames[tech as TechKey];
+        acc[techName.toLowerCase()] = stateData.reduce((sum, item) => sum + (item[tech as TechKey] || 0), 0);
         return acc;
       }, {} as Record<string, number>);
       
@@ -301,7 +303,7 @@ const MicrogridDashboard = () => {
   
   // 4. Deployment over time
   const timeData = _(microgridData)
-    .filter(item => item['Operational Year'] && !isNaN(parseInt(item['Operational Year'])))
+    .filter(item => !!item['Operational Year'] && !isNaN(parseInt(item['Operational Year'])))
     .groupBy(item => item['Operational Year'])
     .map((items, year) => ({
       year: parseInt(year),
@@ -463,7 +465,7 @@ const MicrogridDashboard = () => {
                   <PieChart>
                     <Pie
                       activeIndex={activePieIndex}
-                      activeShape={renderActiveShape}
+                      activeShape={renderActiveShape as (props: unknown) => React.ReactElement | null}
                       data={totalByTech}
                       cx="50%"
                       cy="50%"

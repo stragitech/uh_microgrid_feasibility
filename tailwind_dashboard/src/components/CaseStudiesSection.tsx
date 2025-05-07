@@ -6,7 +6,6 @@ import Image from 'next/image';
 
 const CaseStudiesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -200,7 +199,7 @@ const CaseStudiesSection = () => {
 
         {/* Case Study Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
-          {caseStudies.map((study, index) => (
+          {caseStudies.map((study) => (
             <div 
               key={study.id} 
               className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl border border-gray-200"
@@ -328,7 +327,7 @@ const CaseStudiesSection = () => {
               <h4 className="text-xl font-semibold text-gray-900 mb-3">Conclusion</h4>
               <p className="text-gray-700">
                 Texas has a unique opportunity to lead in reliable, sustainable energy with strategic microgrid implementation. 
-                From SRJC's simple but effective solar configuration to UT Austin's sophisticated and resilient campus system, 
+                From SRJC&apos;s simple but effective solar configuration to UT Austin&apos;s sophisticated and resilient campus system, 
                 these real-world examples provide a roadmap for Texas communities seeking energy security. The future lies not just 
                 in surviving extreme weather events, but in building energy systems that simultaneously protect people, reduce costs, 
                 and advance environmental goals.
