@@ -9,13 +9,10 @@ import UHMapSection from '@/components/UHMapSection';
 import UHFocusSection from '@/components/UHFocusSection';
 import FundingPolicySection from '@/components/FundingPolicySection';
 import ResourcesSection from '@/components/ResourcesSection';
-import MicrogridDashboard from '@/components/MicrogridDashboard'; // Added import - Updated path
-
 export default function Home() {
   return (
     <div>
       <Header />
-      <MicrogridDashboard /> {/* Added Dashboard */}
       <main className="pt-16"> {/* Add padding top to account for fixed header */}
         <HomeSection />
         <AboutSection />

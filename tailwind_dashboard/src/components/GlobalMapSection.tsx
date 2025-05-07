@@ -58,9 +58,9 @@ const GlobalMapSection = () => {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
-        <div className="mt-8"> {/* Added margin-top for spacing */}
+      </div>
+      <div className="mt-8"> {/* Added margin-top for spacing */}
           <MicrogridDashboard />
-        </div>
       </div>
     </section>
   );
