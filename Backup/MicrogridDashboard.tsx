@@ -1,7 +1,7 @@
 "use client"; // Added directive
 
 import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, PieChart, Pie, Sector, LineChart, Line, ScatterChart, Scatter, ZAxis, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, AreaChart, Area } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, PieChart, Pie, Sector, LineChart, Line, ScatterChart, Scatter, ZAxis, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, AreaChart, Area, TooltipProps } from 'recharts'; // Import TooltipProps
 import * as d3 from 'd3';
 import _ from 'lodash';
 import Papa from 'papaparse';
@@ -23,7 +23,7 @@ const DARK_COLORS = COLORS.map(color => {
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 });
 
-const CustomTooltip = ({ active, payload, label, valueFormat = val => val, nameFormat = name => name }) => {
+const CustomTooltip = ({ active, payload, label, valueFormat = val => val, nameFormat = name => name }: TooltipProps<any, any>) => { // Added type annotation
   if (active && payload && payload.length) {
     return (
       <div className="p-4 bg-gray-800 text-white rounded-lg shadow-lg border border-gray-700">

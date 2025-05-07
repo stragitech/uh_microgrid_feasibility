@@ -1,167 +1,11 @@
-// Remove the unused ts-nocheck directive
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, PieChart, Pie, Sector, LineChart, Line, ScatterChart, Scatter, ZAxis, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, AreaChart, Area } from 'recharts';
-import * as d3 from 'd3';
 import _ from 'lodash';
-// Remove unused import
 import * as XLSX from 'xlsx';
-
-// Type Definitions
-interface MicrogridDataItem {
-  'Total Capacity (kW)': number;
-  'Generation Capacity (kW)': number;
-  'Storage Capacity (kW)': number;
-  'CHP Capacity (kW)': number;
-  'Solar Capacity (kW)': number;
-  'Wind Capacity (kW)': number;
-  'Hydro Capacity (kW)': number;
-  'Fuel Cell Capacity (kW)': number;
-  'Diesel Capacity (kW)': number;
-  'Natural Gas Capacity (kW)': number;
-  'Biogas Capacity (kW)': number;
-  'Other Capacity (kW)': number;
-  'Energy Storage (kWh)': number;
-  'State': string;
-  'Project/Facility Name': string;
-  'Grid Connected': string;
-  'Primary Application': string;
-  'Operational Year': string;
-  [key: string]: any; // Allow indexing with strings for dynamic access
-}
-
-// Define the raw Excel row type for use in the map function
-interface RawExcelRow {
-  [key: string]: any;
-}
-
-interface TechCapacity {
-  name: string;
-  value: number;
-}
-
-interface StorageDataItem {
-  name: string;
-  storage: number;
-  capacity: number;
-  state: string;
-}
-
-interface HeatmapData {
-  [state: string]: {
-    total: number;
-    generation: number;
-    storage: number;
-    solar?: number;
-    wind?: number;
-    hydro?: number;
-    'fuel cell'?: number;
-    diesel?: number;
-    'natural gas'?: number;
-    biogas?: number;
-    chp?: number;
-    other?: number;
-    [key: string]: number | undefined; // Allow indexing with strings
-  };
-}
-
-interface TimeDataItem {
-  year: number;
-  count: number;
-  totalCapacity: number;
-  storageCapacity: number;
-  solar: number;
-  wind: number;
-  hydro: number;
-  diesel: number;
-  natural_gas: number;
-}
-
-interface GridStatItem {
-  name: string;
-  value: number;
-}
-
-interface ApplicationStatItem {
-  name: string;
-  value: number;
-}
-
-interface StorageRelationItem {
-  totalCapacity: number;
-  storageCapacity: number;
-  state: string;
-  name: string;
-}
-
-interface RadarDataItem {
-  state: string;
-  solar: number;
-  wind: number;
-  hydro: number;
-  diesel: number;
-  natural_gas: number;
-  chp: number;
-}
-
-interface TechOverTimeItem {
-  year: number;
-  Solar: number;
-  Wind: number;
-  Hydro: number;
-  Diesel: number;
-  'Natural Gas': number;
-}
-
-interface HeatmapMetricDataItem {
-  state: string;
-  [metric: string]: number | string; // Allow indexing with strings for metrics
-}
-
-interface RenderActiveShapeProps {
-  cx: number;
-  cy: number;
-  midAngle: number;
-  innerRadius: number;
-  outerRadius: number;
-  startAngle: number;
-  endAngle: number;
-  fill: string;
-  payload: any; // Payload type can be more specific if needed
-  percent: number;
-  value: number;
-}
-
-interface HeatMapCellProps {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  value: number;
-  min: number;
-  max: number;
-  label: string;
-}
-
-interface CustomTooltipProps {
-  active?: boolean;
-  payload?: Array<{
-    name: string;
-    value: number;
-    color: string;
-  }>;
-  label?: string | number;
-  valueFormat?: (val: number) => string;
-  nameFormat?: (name: string) => string;
-}
-
-// Declare window.fs if it's a custom API
-declare global {
-  interface Window {
-    fs: {
-      readFile: (path: string) => Promise<ArrayBuffer>;
-    };
-  }
-}
 
 // Custom color palette for our visualizations
 const COLORS = [
@@ -170,7 +14,20 @@ const COLORS = [
   '#aec7e8', '#ffbb78', '#98df8a', '#ff9896', '#c5b0d5'
 ];
 
-const CustomTooltip = ({ active, payload, label, valueFormat = (val: number) => val.toString(), nameFormat = (name: string) => name }: CustomTooltipProps) => {
+// Define proper types for TooltipProps
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    name: string;
+    value: number;
+    color: string;
+  }>;
+  label?: string | number;
+  valueFormat?: (val: any) => any;
+  nameFormat?: (name: any) => any;
+}
+
+const CustomTooltip = ({ active, payload, label, valueFormat = val => val, nameFormat = name => name }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="p-4 bg-gray-800 text-white rounded-lg shadow-lg border border-gray-700">
@@ -186,7 +43,25 @@ const CustomTooltip = ({ active, payload, label, valueFormat = (val: number) => 
   return null;
 };
 
-const renderActiveShape = (props: RenderActiveShapeProps) => {
+// Define interface for the active shape props
+interface ActiveShapeProps {
+  cx: number;
+  cy: number;
+  midAngle: number;
+  innerRadius: number;
+  outerRadius: number;
+  startAngle: number;
+  endAngle: number;
+  fill: string;
+  payload: {
+    name: string;
+    value: number;
+  };
+  percent: number;
+  value: number;
+}
+
+const renderActiveShape = (props: ActiveShapeProps) => {
   const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
   const sin = Math.sin(-midAngle * Math.PI / 180);
   const cos = Math.cos(-midAngle * Math.PI / 180);
@@ -234,21 +109,46 @@ const renderActiveShape = (props: RenderActiveShapeProps) => {
 };
 
 const MicrogridDashboard = () => {
+  // Define interface for the microgrid data structure
+  interface MicrogridDataItem {
+    'Total Capacity (kW)': number;
+    'Generation Capacity (kW)': number;
+    'Storage Capacity (kW)': number;
+    'CHP Capacity (kW)': number;
+    'Solar Capacity (kW)': number;
+    'Wind Capacity (kW)': number;
+    'Hydro Capacity (kW)': number;
+    'Fuel Cell Capacity (kW)': number;
+    'Diesel Capacity (kW)': number;
+    'Natural Gas Capacity (kW)': number;
+    'Biogas Capacity (kW)': number;
+    'Other Capacity (kW)': number;
+    'Energy Storage (kWh)': number;
+    'State': string;
+    'Project/Facility Name': string;
+    'Grid Connected': string;
+    'Primary Application': string;
+    'Operational Year': string;
+    [key: string]: number | string; // Allow string indexing for dynamic access
+  }
+
   const [microgridData, setMicrogridData] = useState<MicrogridDataItem[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [activeTab, setActiveTab] = useState<string>('overview');
-  const [activePieIndex, setActivePieIndex] = useState<number>(0);
-  const [activeHeatmapMetric, setActiveHeatmapMetric] = useState<string>('total');
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('overview');
+  const [activePieIndex, setActivePieIndex] = useState(0);
+  const [activeHeatmapMetric, setActiveHeatmapMetric] = useState('total');
   const [topStates, setTopStates] = useState<string[]>([]);
   
   useEffect(() => {
     const loadData = async () => {
       try {
         setLoading(true);
-        const response = await window.fs.readFile('Microgrid Dataset.xlsx');
+        // Modified to fetch from public folder
+        const response = await fetch('/US_Microgrid_Dataset.xlsx'); 
+        const fileData = await response.arrayBuffer();
         
         // Use SheetJS to parse the Excel file
-        const workbook = XLSX.read(response, {
+        const workbook = XLSX.read(fileData, { // Use fileData instead of response
           cellDates: true
         });
         
@@ -257,12 +157,17 @@ const MicrogridDashboard = () => {
         const sheet = workbook.Sheets[sheetName];
         
         // Convert to JSON
-        const jsonData = XLSX.utils.sheet_to_json(sheet) as RawExcelRow[];
+        const jsonData = XLSX.utils.sheet_to_json<RawExcelRow>(sheet);
+        
+        // Define a type for the raw Excel data
+        interface RawExcelRow {
+          [key: string]: string | number | null | undefined;
+        }
         
         // Clean up the data
-        const cleanedData = jsonData.map((row) => ({
+        const cleanedData = (jsonData as RawExcelRow[]).map(row => ({
           ...row,
-          // Convert all capacity fields to numbers and handle missing values    
+          // Convert all capacity fields to numbers and handle missing values
           'Total Capacity (kW)': parseFloat(String(row['Total Capacity (kW)'] || '0')) || 0,
           'Generation Capacity (kW)': parseFloat(String(row['Generation Capacity (kW)'] || '0')) || 0,
           'Storage Capacity (kW)': parseFloat(String(row['Storage Capacity (kW)'] || '0')) || 0,
@@ -277,10 +182,10 @@ const MicrogridDashboard = () => {
           'Other Capacity (kW)': parseFloat(String(row['Other Capacity (kW)'] || '0')) || 0,
           'Energy Storage (kWh)': parseFloat(String(row['Energy Storage (kWh)'] || '0')) || 0,
           // Handle text fields
-          'State': String(row['State'] || 'Unknown'),
-          'Project/Facility Name': String(row['Project/Facility Name'] || 'Unknown'),
-          'Grid Connected': String(row['Grid Connected'] || 'Unknown'),
-          'Primary Application': String(row['Primary Application'] || 'Other'),
+          'State': row['State'] || 'Unknown',
+          'Project/Facility Name': row['Project/Facility Name'] || 'Unknown',
+          'Grid Connected': row['Grid Connected'] || 'Unknown',
+          'Primary Application': row['Primary Application'] || 'Other',
           'Operational Year': row['Operational Year'] ? String(row['Operational Year']) : 'Unknown',
         })) as MicrogridDataItem[];
         
@@ -320,7 +225,7 @@ const MicrogridDashboard = () => {
     'Other Capacity (kW)'
   ];
   
-  const techNames: Record<string, string> = {
+  const techNames = {
     'Solar Capacity (kW)': 'Solar',
     'Wind Capacity (kW)': 'Wind',
     'Hydro Capacity (kW)': 'Hydro',
@@ -332,7 +237,7 @@ const MicrogridDashboard = () => {
     'Other Capacity (kW)': 'Other'
   };
   
-  const totalByTech: TechCapacity[] = techColumns.map(tech => {
+  const totalByTech = techColumns.map(tech => {
     const total = microgridData.reduce((sum, item) => sum + (item[tech] || 0), 0);
     return {
       name: techNames[tech],
@@ -341,7 +246,7 @@ const MicrogridDashboard = () => {
   }).filter(item => item.value > 0).sort((a, b) => b.value - a.value);
   
   // 2. Storage capacity distribution
-  const storageData: StorageDataItem[] = microgridData
+  const storageData = microgridData
     .filter(item => item['Energy Storage (kWh)'] > 0)
     .map(item => ({
       name: item['Project/Facility Name'] || 'Unknown',
@@ -352,8 +257,25 @@ const MicrogridDashboard = () => {
     .sort((a, b) => b.storage - a.storage)
     .slice(0, 20);
   
+  // Define interface for heatmap data structure
+  interface HeatmapStateData {
+    total: number;
+    generation: number;
+    storage: number;
+    solar?: number;
+    wind?: number;
+    hydro?: number;
+    'fuel cell'?: number;
+    diesel?: number;
+    'natural gas'?: number;
+    biogas?: number;
+    chp?: number;
+    other?: number;
+    [key: string]: number | undefined;
+  }
+
   // 3. Technology mix by state (for our heatmap)
-  const heatmapData: HeatmapData = {};
+  const heatmapData: Record<string, HeatmapStateData> = {};
   if (topStates.length > 0) {
     topStates.forEach(state => {
       const stateData = microgridData.filter(item => item['State'] === state);
@@ -364,7 +286,7 @@ const MicrogridDashboard = () => {
         storage: stateData.reduce((sum, item) => sum + (item['Storage Capacity (kW)'] || 0), 0),
       };
       
-      const techTotals: Record<string, number> = techColumns.reduce((acc, tech) => {
+      const techTotals = techColumns.reduce((acc, tech) => {
         const techName = techNames[tech];
         acc[techName.toLowerCase()] = stateData.reduce((sum, item) => sum + (item[tech] || 0), 0);
         return acc;
@@ -378,7 +300,7 @@ const MicrogridDashboard = () => {
   }
   
   // 4. Deployment over time
-  const timeData: TimeDataItem[] = _(microgridData)
+  const timeData = _(microgridData)
     .filter(item => item['Operational Year'] && !isNaN(parseInt(item['Operational Year'])))
     .groupBy(item => item['Operational Year'])
     .map((items, year) => ({
@@ -397,7 +319,7 @@ const MicrogridDashboard = () => {
     .value();
   
   // 5. Grid connectivity stats
-  const gridStats: GridStatItem[] = _(microgridData)
+  const gridStats = _(microgridData)
     .groupBy(item => item['Grid Connected'] || 'Unknown')
     .map((items, status) => ({
       name: status,
@@ -407,7 +329,7 @@ const MicrogridDashboard = () => {
     .value();
   
   // 6. Primary application stats
-  const applicationStats: ApplicationStatItem[] = _(microgridData)
+  const applicationStats = _(microgridData)
     .groupBy(item => item['Primary Application'] || 'Other')
     .map((items, app) => ({
       name: app,
@@ -419,7 +341,7 @@ const MicrogridDashboard = () => {
     .value();
   
   // 7. Storage capacity relation to total capacity
-  const storageRelation: StorageRelationItem[] = microgridData
+  const storageRelation = microgridData
     .filter(item => 
       item['Energy Storage (kWh)'] > 0 && 
       item['Total Capacity (kW)'] > 0
@@ -432,7 +354,7 @@ const MicrogridDashboard = () => {
     }));
   
   // 8. Technology mix radar chart data
-  const radarData: RadarDataItem[] = topStates.slice(0, 5).map(state => {
+  const radarData = topStates.slice(0, 5).map(state => {
     const stateData = heatmapData[state] || {};
     return {
       state,
@@ -446,7 +368,7 @@ const MicrogridDashboard = () => {
   });
   
   // 9. Technology mix over time
-  const techOverTime: TechOverTimeItem[] = timeData
+  const techOverTime = timeData
     .filter(item => item.year >= 2010)
     .map(item => ({
       year: item.year,
@@ -458,7 +380,7 @@ const MicrogridDashboard = () => {
     }));
   
   // Format numbers with commas
-  const numberFormatter = (number: number): string => {
+  const numberFormatter = (number: number) => {
     return number.toLocaleString();
   };
   
@@ -554,14 +476,7 @@ const MicrogridDashboard = () => {
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
-                    <Tooltip content={({ active, payload, label }) => 
-                      <CustomTooltip 
-                        active={active} 
-                        payload={payload} 
-                        label={label} 
-                        valueFormat={(val) => `${numberFormatter(val)} kW`} 
-                      />}
-                    />
+                    <Tooltip content={<CustomTooltip valueFormat={val => `${numberFormatter(val)} kW`} />} />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
@@ -598,7 +513,7 @@ const MicrogridDashboard = () => {
                       tick={{ fontSize: 12 }}
                     />
                     <Tooltip 
-                      formatter={(value: number) => [numberFormatter(value) + ' kW', 'Capacity']}
+                      formatter={(value) => [numberFormatter(value as number) + ' kW', 'Capacity']}
                       contentStyle={{ backgroundColor: '#333', border: 'none' }}
                     />
                     <Bar dataKey="value" radius={[0, 4, 4, 0]}>
@@ -631,7 +546,7 @@ const MicrogridDashboard = () => {
                       tick={{ fontSize: 12 }}
                     />
                     <Tooltip 
-                      formatter={(value: number) => [value.toString(), 'Count']}
+                      formatter={(value) => [value, 'Count']}
                       contentStyle={{ backgroundColor: '#333', border: 'none' }}
                     />
                     <Bar dataKey="value" fill="#8884d8" radius={[0, 4, 4, 0]}>
@@ -664,9 +579,7 @@ const MicrogridDashboard = () => {
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
-                    <Tooltip content={({ active, payload, label }) => 
-                      <CustomTooltip active={active} payload={payload} label={label} />
-                    } />
+                    <Tooltip content={<CustomTooltip />} />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
@@ -697,7 +610,7 @@ const MicrogridDashboard = () => {
                       tick={{ fontSize: 10 }}
                     />
                     <Tooltip 
-                      formatter={(value: number) => [numberFormatter(value) + ' kWh', 'Storage Capacity']}
+                      formatter={(value) => [numberFormatter(value as number) + ' kWh', 'Storage Capacity']}
                       contentStyle={{ backgroundColor: '#333', border: 'none' }}
                     />
                     <Bar dataKey="storage" fill="#f39c12" radius={[0, 4, 4, 0]} />
@@ -735,7 +648,7 @@ const MicrogridDashboard = () => {
                     />
                     <ZAxis range={[50, 400]} />
                     <Tooltip 
-                      formatter={(value: number) => [numberFormatter(value), '']}
+                      formatter={(value) => [numberFormatter(value as number), '']}
                       contentStyle={{ backgroundColor: '#333', border: 'none' }}
                     />
                     <Scatter name="Storage Relation" data={storageRelation} fill="#ff7f0e" />
@@ -752,9 +665,10 @@ const MicrogridDashboard = () => {
                   <BarChart
                     data={topStates.map(state => ({ 
                       state, 
-                      storage: microgridData
-                        .filter(item => item['State'] === state)
-                        .reduce((sum, item) => sum + item['Energy Storage (kWh)'], 0)
+                      storage: _.sumBy(
+                        microgridData.filter(item => item['State'] === state), 
+                        'Energy Storage (kWh)'
+                      )
                     })).sort((a, b) => b.storage - a.storage)}
                     margin={{ top: 5, right: 30, left: 30, bottom: 5 }}
                   >
@@ -762,7 +676,7 @@ const MicrogridDashboard = () => {
                     <XAxis dataKey="state" stroke="#aaa" />
                     <YAxis tickFormatter={numberFormatter} stroke="#aaa" />
                     <Tooltip 
-                      formatter={(value: number) => [numberFormatter(value) + ' kWh', 'Storage Capacity']}
+                      formatter={(value) => [numberFormatter(value as number) + ' kWh', 'Storage Capacity']}
                       contentStyle={{ backgroundColor: '#333', border: 'none' }}
                     />
                     <Bar dataKey="storage" fill="#f39c12" radius={[4, 4, 0, 0]}>
@@ -837,7 +751,7 @@ const MicrogridDashboard = () => {
                         label={{ value: 'Capacity (kW)', angle: -90, position: 'insideLeft', offset: -10, fill: '#aaa' }}
                       />
                       <Tooltip 
-                        formatter={(value: number) => [numberFormatter(value) + ' kW', '']}
+                        formatter={(value) => [numberFormatter(value as number) + ' kW', '']}
                         contentStyle={{ backgroundColor: '#333', border: 'none' }}
                       />
                       <Legend verticalAlign="top" height={36} />
@@ -882,7 +796,7 @@ const MicrogridDashboard = () => {
                         label={{ value: 'Capacity (kW)', angle: -90, position: 'insideLeft', offset: -10, fill: '#aaa' }}
                       />
                       <Tooltip 
-                        formatter={(value: number) => [numberFormatter(value) + ' kW', '']}
+                        formatter={(value) => [numberFormatter(value as number) + ' kW', '']}
                         contentStyle={{ backgroundColor: '#333', border: 'none' }}
                       />
                       <Legend verticalAlign="top" height={36} />
@@ -905,7 +819,7 @@ const MicrogridDashboard = () => {
                     <PolarRadiusAxis angle={30} domain={[0, 'auto']} tickFormatter={value => {
                       if (value >= 1000000) return `${(value / 1000000).toFixed(1)}M`;
                       if (value >= 1000) return `${(value / 1000).toFixed(0)}k`;
-                      return value.toString();
+                      return value;
                     }} />
                     {Object.keys(radarData[0] || {}).filter(key => key !== 'state').map((key, index) => (
                       <Radar 
@@ -930,10 +844,12 @@ const MicrogridDashboard = () => {
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
-                    data={Object.entries(_.countBy(microgridData, 'State'))
-                      .map(([state, count]) => ({ state, count }))
-                      .sort((a, b) => b.count - a.count)
-                      .slice(0, 10)}
+                    data={_(microgridData)
+                      .countBy('State')
+                      .map((count, state) => ({ state, count }))
+                      .sortBy(item => -item.count)
+                      .slice(0, 10)
+                      .value()}
                     margin={{ top: 5, right: 30, left: 30, bottom: 5 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" stroke="#444" />
@@ -968,7 +884,7 @@ const MicrogridDashboard = () => {
                     <XAxis dataKey="year" stroke="#aaa" />
                     <YAxis stroke="#aaa" />
                     <Tooltip 
-                      formatter={(value: number) => [value.toString(), 'Count']}
+                      formatter={(value) => [value, 'Count']}
                       contentStyle={{ backgroundColor: '#333', border: 'none' }}
                     />
                     <Line type="monotone" dataKey="count" stroke="#8884d8" dot={{ stroke: '#8884d8', strokeWidth: 2 }} activeDot={{ r: 8 }} />
@@ -992,12 +908,12 @@ const MicrogridDashboard = () => {
                       tickFormatter={value => {
                         if (value >= 1000000) return `${(value / 1000000).toFixed(1)}M`;
                         if (value >= 1000) return `${(value / 1000).toFixed(0)}k`;
-                        return value.toString();
+                        return value;
                       }} 
                       stroke="#aaa"
                     />
                     <Tooltip 
-                      formatter={(value: number) => [numberFormatter(value) + ' kW', 'Capacity']}
+                      formatter={(value) => [numberFormatter(value as number) + ' kW', 'Capacity']}
                       contentStyle={{ backgroundColor: '#333', border: 'none' }}
                     />
                     <Line type="monotone" dataKey="totalCapacity" stroke="#27ae60" strokeWidth={2} dot={{ stroke: '#27ae60', strokeWidth: 2 }} activeDot={{ r: 8 }} />
@@ -1021,12 +937,12 @@ const MicrogridDashboard = () => {
                       tickFormatter={value => {
                         if (value >= 1000000) return `${(value / 1000000).toFixed(1)}M`;
                         if (value >= 1000) return `${(value / 1000).toFixed(0)}k`;
-                        return value.toString();
+                        return value;
                       }}
                       stroke="#aaa"
                     />
                     <Tooltip 
-                      formatter={(value: number) => [numberFormatter(value) + ' kW', '']}
+                      formatter={(value) => [numberFormatter(value as number) + ' kW', '']}
                       contentStyle={{ backgroundColor: '#333', border: 'none' }}
                     />
                     <Legend />

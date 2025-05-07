@@ -9,7 +9,7 @@ import UHMapSection from '@/components/UHMapSection';
 import UHFocusSection from '@/components/UHFocusSection';
 import FundingPolicySection from '@/components/FundingPolicySection';
 import ResourcesSection from '@/components/ResourcesSection';
-import MicrogridDashboard from '@/components/MicrogridDashboard'; // Added import
+import MicrogridDashboard from '@/components/MicrogridDashboard'; // Added import - Updated path
 
 export default function Home() {
   return (
