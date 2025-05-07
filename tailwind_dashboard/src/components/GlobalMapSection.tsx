@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import MicrogridDashboard from './MicrogridDashboard';
 
 const GlobalMapSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -56,6 +57,9 @@ const GlobalMapSection = () => {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
+        </div>
+        <div className="mt-8"> {/* Added margin-top for spacing */}
+          <MicrogridDashboard />
         </div>
       </div>
     </section>
