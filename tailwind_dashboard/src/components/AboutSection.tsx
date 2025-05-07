@@ -56,6 +56,27 @@ const AboutSection = () => {
         <p className="mb-4">
           The defining feature is its ability to intentionally &quot;island&quot; itself from the macrogrid during outages or disturbances, using its own local energy resources to power its designated loads. This capability is managed by a sophisticated microgrid controller.
         </p>
+        {/* Responsive video embed */}
+        <div className="relative w-full max-w-screen-lg mx-auto my-4" style={{ paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/wyfzsjm_uG8?si=Q2r3hAlaKrH__omT"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="absolute top-0 left-0 w-full h-full"
+          ></iframe>
+        </div>
+        <h2 id="why-important" className="text-2xl font-semibold text-gray-800 mb-3 mt-8">Why are Microgrids Important?</h2>
+        <p className="mb-4">
+          Microgrids offer significant advantages, primarily focused on enhancing <strong>energy resilience</strong> and <strong>reliability</strong>. By operating independently during grid outages caused by weather, equipment failure, or other disruptions, they ensure continuous power for critical facilities (like hospitals, data centers, emergency services) and communities. Examples like UT Austin maintaining power during Winter Storm Uri highlight this crucial benefit.
+        </p>
+        <p className="mb-4">
+          They also facilitate the integration of <strong>Distributed Energy Resources (DERs)</strong>, especially renewables like solar and wind, as well as combined heat and power (CHP) systems and battery storage. This promotes cleaner energy, reduces greenhouse gas emissions, and can potentially lower energy costs through optimized local generation and demand management. Furthermore, microgrids can improve local power quality and provide beneficial services back to the main grid when connected.
+        </p>
         <div className="text-center my-6">
           <Image
             src="/images/microgrid-system.png"
@@ -65,14 +86,6 @@ const AboutSection = () => {
             className="mx-auto border border-gray-300"
           />
         </div>
-
-        <h2 id="why-important" className="text-2xl font-semibold text-gray-800 mb-3 mt-8">Why are Microgrids Important?</h2>
-        <p className="mb-4">
-          Microgrids offer significant advantages, primarily focused on enhancing <strong>energy resilience</strong> and <strong>reliability</strong>. By operating independently during grid outages caused by weather, equipment failure, or other disruptions, they ensure continuous power for critical facilities (like hospitals, data centers, emergency services) and communities. Examples like UT Austin maintaining power during Winter Storm Uri highlight this crucial benefit.
-        </p>
-        <p className="mb-4">
-          They also facilitate the integration of <strong>Distributed Energy Resources (DERs)</strong>, especially renewables like solar and wind, as well as combined heat and power (CHP) systems and battery storage. This promotes cleaner energy, reduces greenhouse gas emissions, and can potentially lower energy costs through optimized local generation and demand management. Furthermore, microgrids can improve local power quality and provide beneficial services back to the main grid when connected.
-        </p>
 
         <h2 id="how-work" className="text-2xl font-semibold text-gray-800 mb-3 mt-8">How do they Work?</h2>
         <p className="mb-4">
