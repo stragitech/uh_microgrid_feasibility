@@ -42,11 +42,11 @@ const GlobalMapSection = () => {
     <section
       id="global-map"
       ref={sectionRef}
-      className={`py-12 px-4 bg-white transition-all duration-600 ease-out ${
+      className={`py-12 bg-white transition-all duration-600 ease-out ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
       }`}
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center text-red-700 mb-4">Global Microgrid Examples</h2>
         <p className="text-center max-w-3xl mx-auto mb-8 text-gray-600">Microgrids are being deployed worldwide in diverse applications. This map showcases examples ranging from remote community power systems to industrial facilities, military bases, and university campuses, illustrating the global trend towards localized, resilient energy solutions.</p>
         <div className="relative w-full max-w-screen-xl mx-auto" style={{ paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}> {/* 16:9 Aspect Ratio */}
