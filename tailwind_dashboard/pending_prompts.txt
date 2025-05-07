@@ -1,0 +1,6 @@
+General rules, @/Coding_Style.md
+We are working on the subfolder of tailwind_dashboard . 
+
+Go into Archtect mode. Don't wriite any code yet, examine the current page and its features. Come up with ways to make it more interactive and make the UX more pleasant as they look through the site. 
+
+Additionally, come up with a gradual implementation plan to slowly rollout features and patch bugs as they come and test tthe styling.
